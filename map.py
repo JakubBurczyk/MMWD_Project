@@ -4,12 +4,17 @@ import random
 
 
 class Map:
+    min_edg_factor = 3 / 2
+    max_edg_factor = 5 / 2
 
     def __init__(self, size: int, edg: int = 0):
         if edg < size*3/2:
-            edg = random.randrange(int(size*3/2), size*2)
+            edg = random.randrange(int(size*self.min_edg_factor), int(size*self.max_edg_factor))
 
-        self.G = nx.gnm_random_graph(size,edg)
+        self.edg = edg
+        self.G = nx.gnm_random_graph(size, edg)
+
+        #test charger as last node
         self.chargers = [size-1]
 
     def print(self):
@@ -21,9 +26,9 @@ class Map:
         color_map = []
         for node in self.G:
             if node in self.chargers:
-                color_map.append('lightblue')
-            else:
                 color_map.append('lightgreen')
+            else:
+                color_map.append('lightblue')
 
         nx.draw_networkx_nodes(self.G, pos, node_size=200, node_color = color_map)
 

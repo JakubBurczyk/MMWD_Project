@@ -1,1 +1,4 @@
-***Test readme file***
+Required packages:
+
+NetworkX 2.5
+Matplotlib 3.3.2
