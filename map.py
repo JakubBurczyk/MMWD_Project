@@ -12,13 +12,16 @@ class Map:
     min_weight = 10
     max_weight = 20
 
-    def __init__(self, size: int, edg: int = 0):
+    charger_energy = 500
+
+    def __init__(self, size: int, edg: int = 0, as_complete = False):
         if edg < size*self.min_edg_factor:
             edg = random.randint(size*self.min_edg_factor, size*self.max_edg_factor)
 
         self.edg_number = edg
         self.G = nx.gnm_random_graph(size, edg)
-
+        if as_complete:
+            self.G = nx.complete_graph(size)
         #initialize random weights in range <min_weight, max_weight>
 
         for (u, v) in self.G.edges():
@@ -29,7 +32,7 @@ class Map:
         nx.set_node_attributes(self.G, False, self.is_charger)
 
         #test charger as last node
-        self.G.nodes[size-1][self.is_charger] = True
+        self.set_as_charger(size-1)
 
     def print(self, edge_filter=0):
         if edge_filter < self.min_weight:
@@ -57,3 +60,23 @@ class Map:
 
         plt.axis("on")
         plt.show()
+
+    def count_chargers(self) -> int:
+        chargers = 0
+        for node in self.G.nodes(data=True):
+            if node[1][self.is_charger] is True:
+                chargers = chargers + 1
+
+        return chargers
+
+    def set_as_charger(self, node_num) -> None:
+
+        if node_num in self.G.nodes:
+            t =   self.G.nodes(data=True)[node_num]
+            self.G.nodes(data=True)[node_num][self.is_charger] = True
+
+    def get_distance_between(self, n1, n2) -> float:
+        if (n1, n2) in self.G.edges:
+            return self.G.edges[n1, n2][self.weight]
+        else:
+            return None
