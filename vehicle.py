@@ -51,5 +51,17 @@ class Vehicle:
 
         self.battery_life = self.battery_life - self.battery_life_loss
 
-    def can_traverse_to(self,destination) -> bool:
+    def reduce_current_range(self, distance):
+        self.battery = self.battery - distance * self.km_per_unit_energy
+
+    def can_traverse_to(self, destination) -> bool:
         return self.calculate_range() >= self.map.get_distance_between(self.current_node, destination)
+
+    def move(self, destination) -> bool:
+        can_move = self.can_traverse_to(destination)
+        if can_move:
+            self.reduce_current_range(self.map.get_distance_between(self.current_node,destination))
+            self.current_node = destination
+
+        return can_move
+
