@@ -72,7 +72,7 @@ class Map:
         if edge_filter < self.min_weight:
             edge_filter = self.min_weight
 
-        e = [(u, v) for (u, v, d) in self.G.edges(data=True) if d[self.weight] > edge_filter]
+        e = [(u, v) for (u, v, d) in self.G.edges(data=True) if d[self.weight] >= edge_filter]
 
         pos = nx.spring_layout(self.G)  # positions for all nodes
 
