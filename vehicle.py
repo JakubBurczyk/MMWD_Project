@@ -10,12 +10,15 @@ class Vehicle:
     starting_capacity = 1
 
     def __init__(self, m: map.Map):
-
         self.map = m
         self.battery_life = 1
         self.battery = self.battery_capacity * self.starting_capacity
         self.start_node = random.randint(0, m.size - 1)
         self.current_node = self.start_node
+        self.chargers = [0] * self.map.size
+        self.visited_nodes = [self.current_node]
+        self.kilometrage = 0
+
         if self.occupied_IDs == []:
             self.ID = 0
         else:
@@ -35,10 +38,14 @@ class Vehicle:
     def print_status(self):
         print("----VEHICLE----")
         print("ID: ", self.ID)
+        print("Start: ", self.start_node)
         print("Current node: ", self.current_node)
         print("Battery: ", self.battery, " / ", self.battery_capacity)
         print("Range: ", self.calculate_range(), "[km]")
+        print("Kilometrage: ", self.kilometrage, "[km]")
         print("Battery life: ", self.battery_life * 100, "%")
+        print("---------------")
+        print()
         print("---------------")
 
     def calculate_range(self) -> float:
@@ -53,15 +60,16 @@ class Vehicle:
         self.battery_life = self.battery_life - self.battery_life_loss
 
     def reduce_current_range(self, distance):
-        self.battery = self.battery - distance * self.km_per_unit_energy
+        self.battery = self.battery - distance / self.km_per_unit_energy
 
-    def can_traverse_to(self, destination) -> bool:
+    def can_move_to(self, destination) -> bool:
         return self.calculate_range() >= self.map.get_distance_between(self.current_node, destination)
 
     def move(self, destination) -> bool:
-        can_move = self.can_traverse_to(destination)
+        can_move = self.can_move_to(destination)
         if can_move:
-            self.reduce_current_range(self.map.get_distance_between(self.current_node, destination))
+            distance = self.map.get_distance_between(self.current_node, destination)
+            self.reduce_current_range(distance)
             self.current_node = destination
-
+            self.kilometrage += distance
         return can_move

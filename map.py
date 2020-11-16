@@ -14,6 +14,30 @@ class Map:
 
     charger_energy = 500
 
+    def __init__(self, size: int, edg: int = 0, as_complete=False, tries: int = 100):
+        if edg < size * self.min_edg_factor:
+            edg = random.randint(size * self.min_edg_factor, size * self.max_edg_factor)
+
+        self.edg_number = edg
+        self.size=size
+
+        if as_complete:
+            self.G = nx.complete_graph(size)
+        else:
+            self.G = self.graph_generator(size, edg, tries)
+            print(self.G.edges)
+        # initialize random weights in range <min_weight, max_weight>
+
+        for (u, v) in self.G.edges():
+            e = self.G.edges[u, v]
+            self.G.edges[u, v][self.weight] = random.randint(self.min_weight, self.max_weight)
+
+        # intialize charger attribute
+        nx.set_node_attributes(self.G, False, self.is_charger)
+
+        # test charger as last node
+        #self.set_as_charger(size - 1)
+
     def connectivity_check(self, Graph,size):
         visited_nodes = [0] * size
 
@@ -44,30 +68,6 @@ class Map:
                 return Graph
         print("whaat")
         return None
-
-    def __init__(self, size: int, edg: int = 0, as_complete=False, tries: int = 100):
-        if edg < size * self.min_edg_factor:
-            edg = random.randint(size * self.min_edg_factor, size * self.max_edg_factor)
-
-        self.edg_number = edg
-        self.size=size
-
-        if as_complete:
-            self.G = nx.complete_graph(size)
-        else:
-            self.G = self.graph_generator(size, edg, tries)
-            print(self.G.edges)
-        # initialize random weights in range <min_weight, max_weight>
-
-        for (u, v) in self.G.edges():
-            e = self.G.edges[u, v]
-            self.G.edges[u, v][self.weight] = random.randint(self.min_weight, self.max_weight)
-
-        # intialize charger attribute
-        nx.set_node_attributes(self.G, False, self.is_charger)
-
-        # test charger as last node
-        self.set_as_charger(size - 1)
 
     def print(self, edge_filter=0):
         if edge_filter < self.min_weight:
@@ -115,3 +115,12 @@ class Map:
             return self.G.edges[n1, n2][self.weight]
         else:
             return None
+
+    def neighbours(self,node) -> list:
+        neighbours = []
+        for (u, v) in self.G.edges:
+            if u == node:
+                neighbours.append(v)
+            elif v == node:
+                neighbours.append(u)
+        return neighbours
