@@ -1,4 +1,5 @@
 import map
+import random
 
 
 class Vehicle:
@@ -12,13 +13,13 @@ class Vehicle:
 
         self.map = m
         self.battery_life = 1
-        self.battery = self.battery_capacity*self.starting_capacity
-        self.current_node = 1
-
+        self.battery = self.battery_capacity * self.starting_capacity
+        self.start_node = random.randint(0, m.size - 1)
+        self.current_node = self.start_node
         if self.occupied_IDs == []:
             self.ID = 0
         else:
-            self.ID = max(self.occupied_IDs)+1
+            self.ID = max(self.occupied_IDs) + 1
 
         self.occupied_IDs.append(self.ID)
 
@@ -35,13 +36,13 @@ class Vehicle:
         print("----VEHICLE----")
         print("ID: ", self.ID)
         print("Current node: ", self.current_node)
-        print("Battery: ", self.battery," / ", self.battery_capacity)
+        print("Battery: ", self.battery, " / ", self.battery_capacity)
         print("Range: ", self.calculate_range(), "[km]")
-        print("Battery life: ", self.battery_life*100, "%")
+        print("Battery life: ", self.battery_life * 100, "%")
         print("---------------")
 
     def calculate_range(self) -> float:
-        return self.battery*self.km_per_unit_energy*self.battery_life
+        return self.battery * self.km_per_unit_energy * self.battery_life
 
     def charge(self) -> None:
         self.battery = self.battery + self.map.charger_energy
@@ -60,8 +61,7 @@ class Vehicle:
     def move(self, destination) -> bool:
         can_move = self.can_traverse_to(destination)
         if can_move:
-            self.reduce_current_range(self.map.get_distance_between(self.current_node,destination))
+            self.reduce_current_range(self.map.get_distance_between(self.current_node, destination))
             self.current_node = destination
 
         return can_move
-

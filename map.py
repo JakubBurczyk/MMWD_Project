@@ -50,6 +50,7 @@ class Map:
             edg = random.randint(size * self.min_edg_factor, size * self.max_edg_factor)
 
         self.edg_number = edg
+        self.size=size
 
         if as_complete:
             self.G = nx.complete_graph(size)
