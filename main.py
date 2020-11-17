@@ -19,11 +19,12 @@ import genetics
 
 gen = genetics.Genetics(nodes=20, edges=0, vehicles_no=5)
 print(gen.mapa.neighbours(2))
-# gen.mapa.print()
+gen.mapa.print()
 
 for i in range(5):
-    print("-----------------CYCLE NUMBER ", i + 1, "-----------------")
+    # print("-----------------CYCLE NUMBER ", i + 1, "-----------------")
     gen.cycle()
     for v in gen.vehicles:
-        v.print_status()
+        pass
+        # v.print_status()
 # m1.print()

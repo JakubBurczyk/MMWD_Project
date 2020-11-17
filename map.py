@@ -38,6 +38,26 @@ class Map:
         # test charger as last node
         # self.set_as_charger(size - 1)
 
+    def delete_doubled_edges(self, Graph):
+        to_be_removed = []
+        for (u, v) in Graph.edges:
+            counter = 0
+            for (x, y) in Graph.edges:
+                if x == u and y == v:
+                    counter += 1
+
+                elif x == v and y == u:
+                    counter += 1
+            if counter > 1:
+                if (u, v) not in to_be_removed and (v, u) not in to_be_removed:
+                    to_be_removed.append((u, v))
+
+        for el in to_be_removed:
+            if el in Graph.edges:
+                Graph.remove_edge(el[0], el[1])
+                print("removed")
+        return Graph
+
     def connectivity_check(self, Graph, size):
         visited_nodes = [0] * size
 
@@ -52,7 +72,23 @@ class Map:
                         visited_nodes[u] = 1
                         check_edges(u)
 
+        def check_for_singles():
+            for n in Graph.nodes:
+                counter = 0
+                for (u, v) in Graph.edges:
+                    if u == n:
+                        counter += 1
+                    elif v == n:
+                        counter += 1
+                if counter < 2:
+                    return False
+            return True
+
+        if not check_for_singles():
+            return False
+
         check_edges(0)
+
         if 0 in visited_nodes:
             print(visited_nodes)
             return False
@@ -62,7 +98,9 @@ class Map:
 
     def graph_generator(self, size: int, edg: int, tries):
         for i in range(tries - 1):
-            Graph = nx.gnm_random_graph(size, edg)
+
+            # Graph = self.delete_doubled_edges(nx.gnm_random_graph(size, edg))
+            Graph=nx.gnm_random_graph(size, edg)
             if self.connectivity_check(Graph, size):
                 print("Tries: ", i + 1)
                 return Graph
