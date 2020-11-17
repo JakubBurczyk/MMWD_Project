@@ -16,13 +16,11 @@ class Genetics:
 
     def cycle(self):
 
-        # print("CYCLE")
         for v in self.vehicles:
             while True:
-                # print("Moving vehicle:", v.ID)
+
                 result = self.move_to_random_neighbour(v)
                 if result:
-                    # print("Moved!")
                     break
 
         self.rank()
@@ -35,7 +33,6 @@ class Genetics:
         for n in neighbours:
             if not v.can_move_to(n):
                 to_be_removed.append(n)
-                print(neighbours)
 
         for n in to_be_removed:
             neighbours.remove(n)
