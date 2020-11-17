@@ -36,10 +36,9 @@ class Genetics:
             if not v.can_move_to(n):
                 to_be_removed.append(n)
                 print(neighbours)
-        if to_be_removed:
-            for n in to_be_removed:
-                if n in neighbours:
-                    neighbours.remove(n)
+
+        for n in to_be_removed:
+            neighbours.remove(n)
 
         if not neighbours:
             v.chargers.append(v.current_node)
@@ -47,17 +46,13 @@ class Genetics:
         to_be_removed_2 = []
         for n in neighbours:
             if n in v.visited_nodes:
-                neighbours.remove(n)
                 to_be_removed_2.append(n)
-        print(neighbours)
-        if to_be_removed_2:
-            for n in to_be_removed_2:
-                if n in neighbours:
-                    neighbours.remove(n)
+
+        for n in to_be_removed_2:
+            neighbours.remove(n)
 
         if neighbours:
             destination = neighbours[random.randint(0, len(neighbours) - 1)]
-            # print("V current node:", v.current_node)
             v.move(destination)
             v.visited_nodes.append(destination)
 
