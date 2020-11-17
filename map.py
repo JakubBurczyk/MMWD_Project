@@ -19,7 +19,7 @@ class Map:
             edg = random.randint(size * self.min_edg_factor, size * self.max_edg_factor)
 
         self.edg_number = edg
-        self.size=size
+        self.size = size
 
         if as_complete:
             self.G = nx.complete_graph(size)
@@ -36,9 +36,9 @@ class Map:
         nx.set_node_attributes(self.G, False, self.is_charger)
 
         # test charger as last node
-        #self.set_as_charger(size - 1)
+        # self.set_as_charger(size - 1)
 
-    def connectivity_check(self, Graph,size):
+    def connectivity_check(self, Graph, size):
         visited_nodes = [0] * size
 
         def check_edges(node):
@@ -63,7 +63,7 @@ class Map:
     def graph_generator(self, size: int, edg: int, tries):
         for i in range(tries - 1):
             Graph = nx.gnm_random_graph(size, edg)
-            if self.connectivity_check(Graph,size):
+            if self.connectivity_check(Graph, size):
                 print("Tries: ", i + 1)
                 return Graph
         print("whaat")
@@ -116,7 +116,7 @@ class Map:
         else:
             return None
 
-    def neighbours(self,node) -> list:
+    def neighbours(self, node) -> list:
         neighbours = []
         for (u, v) in self.G.edges:
             if u == node:

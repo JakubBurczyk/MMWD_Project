@@ -3,6 +3,7 @@ import vehicle
 import random
 from operator import attrgetter
 
+
 class Genetics:
 
     def __init__(self, nodes: int = 0, edges: int = 0, vehicles_no: int = 100):
@@ -12,9 +13,6 @@ class Genetics:
 
         for i in range(vehicles_no):
             self.vehicles.append(vehicle.Vehicle(self.mapa))
-
-
-
 
     def cycle(self):
 
@@ -29,13 +27,11 @@ class Genetics:
 
         self.rank()
 
-
     def move_to_random_neighbour(self, v: vehicle.Vehicle) -> bool:
-        #TODO:sprawdzac czy wierzcholek odwiedzany jest ladowarka -> podladowac
-
+        # TODO:sprawdzac czy wierzcholek odwiedzany jest ladowarka -> podladowac
 
         neighbours = v.map.neighbours(v.current_node)
-        to_be_removed=[]
+        to_be_removed = []
         for n in neighbours:
             if not v.can_move_to(n):
                 to_be_removed.append(n)

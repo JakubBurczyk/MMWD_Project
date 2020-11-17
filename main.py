@@ -17,9 +17,9 @@ import genetics
 # v1.print_status()
 # v2.print_status()
 
-gen = genetics.Genetics(nodes = 20, edges = 0, vehicles_no=5)
+gen = genetics.Genetics(nodes=20, edges=0, vehicles_no=5)
 print(gen.mapa.neighbours(2))
-#gen.mapa.print()
+# gen.mapa.print()
 
 gen.cycle()
 for v in gen.vehicles:
