@@ -17,6 +17,7 @@ class Genetics:
     def cycle(self):
 
         for v in self.vehicles:
+            v.charge()
             while True:
 
                 result = self.move_to_random_neighbour(v)
