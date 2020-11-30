@@ -45,7 +45,7 @@ class Vehicle:
         print("Kilometrage: ", self.kilometrage, "[km]")
         print("Battery life: ", self.battery_life * 100, "%")
         print("---------------")
-        print()
+        print("Gene: ", self.chargers)
         print("---------------")
 
     def calculate_range(self) -> float:

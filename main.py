@@ -22,10 +22,11 @@ gen = genetics.Genetics(nodes=20, edges=0, vehicles_no=100)
 
 # gen.mapa.print()
 
-for i in range(5):
+for i in range(100):
     # print("-----------------CYCLE NUMBER ", i + 1, "-----------------")
     gen.cycle()
     for v in gen.vehicles:
         pass
-        # v.print_status()
+        #v.print_status()
+    gen.vehicles[0].print_status();
 # m1.print()
