@@ -15,7 +15,7 @@ class Vehicle:
         self.battery = self.battery_capacity * self.starting_capacity
         self.start_node = random.randint(0, m.size - 1)
         self.current_node = self.start_node
-        self.chargers = [0] * self.map.size
+        self.chargers = []
         self.visited_nodes = [self.current_node]
         self.kilometrage = 0
 

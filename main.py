@@ -17,9 +17,10 @@ import genetics
 # v1.print_status()
 # v2.print_status()
 
-gen = genetics.Genetics(nodes=20, edges=0, vehicles_no=5)
-print(gen.mapa.neighbours(2))
-gen.mapa.print()
+gen = genetics.Genetics(nodes=20, edges=0, vehicles_no=100)
+# print(gen.mapa.neighbours(2))
+
+# gen.mapa.print()
 
 for i in range(5):
     # print("-----------------CYCLE NUMBER ", i + 1, "-----------------")
