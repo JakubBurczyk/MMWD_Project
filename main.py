@@ -17,13 +17,13 @@ import genetics
 # v1.print_status()
 # v2.print_status()
 
-gen = genetics.Genetics(nodes=100, edges=0, vehicles_no=10)
+gen = genetics.Genetics(nodes=100, edges=0, vehicles_no=200)
 # print(gen.mapa.neighbours(2))
 
-# gen.mapa.print()
+gen.mapa.print()
 
 for i in range(1000):
-    # print("-----------------CYCLE NUMBER ", i + 1, "-----------------")
+    print("-----------------CYCLE NUMBER ", i + 1, "-----------------")
     gen.cycle()
     for v in gen.vehicles:
         pass
@@ -38,4 +38,4 @@ gen.plot_visited_nodes_num_of_best()
 gen.plot_nodes_to_chargers_ratios_of_best()
 
 print("EO MAIN")
-# m1.print()
+m1.print()
