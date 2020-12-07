@@ -106,20 +106,20 @@ class Genetics:
 
         for i in range(len(v1_bin_chargers)):
             if v1_gene_bin_slice[i] == 1:
-                print("Node ",i,"from G1 of value: ",v1_bin_chargers[i], " to G2 of value",gene[i])
+                # print("Node ",i,"from G1 of value: ",v1_bin_chargers[i], " to G2 of value",gene[i])
                 gene[i] = v1_bin_chargers[i]
 
         v_out.chargers = self.binary_gene_to_chargers(gene)
-        print("V1 vis: ", v1.visited_nodes)
-        print("V1 chrg: ", v1.chargers)
-        print("V2 vis: ", v2.visited_nodes)
-        print("V2 chrg: ", v2.chargers)
-        print("G1 -------: ", v1_bin_chargers)
-        print("G1 slicing: ", v1_gene_bin_slice)
-        print("G2 -------: ", self.chargers_to_binary_gene(v2))
-        print("Out ------: ", gene)
-        print("Out : ", self.binary_gene_to_chargers(gene))
-        print("----------------")
+        # print("V1 vis: ", v1.visited_nodes)
+        # print("V1 chrg: ", v1.chargers)
+        # print("V2 vis: ", v2.visited_nodes)
+        # print("V2 chrg: ", v2.chargers)
+        # print("G1 -------: ", v1_bin_chargers)
+        # print("G1 slicing: ", v1_gene_bin_slice)
+        # print("G2 -------: ", self.chargers_to_binary_gene(v2))
+        # print("Out ------: ", gene)
+        # print("Out : ", self.binary_gene_to_chargers(gene))
+        # print("----------------")
 
     def chargers_to_binary_gene(self, v: vehicle.Vehicle):
         gene = [0]*self.mapa.size
