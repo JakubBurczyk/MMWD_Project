@@ -30,7 +30,7 @@ for i in range(1000):
         #v.print_status()
     #gen.vehicles[0].print_status();
 
-gen.vehicles[0].print_status();
+gen.vehicles[0].print_status()
 gen.plot_avg_age()
 gen.plot_charger_nums_of_best()
 gen.plot_kilometrages_of_best()

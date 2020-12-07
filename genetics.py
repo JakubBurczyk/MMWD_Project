@@ -34,7 +34,7 @@ class Genetics:
         for v in self.vehicles:
             v.charge()
             v.age = v.age + 1
-            #print("ID: ",v.ID,"  AGE: ", v.age)
+            # print("ID: ",v.ID,"  AGE: ", v.age)
             while True:
 
                 result = self.move_to_random_neighbour(v)
@@ -50,9 +50,18 @@ class Genetics:
         self.kilometrages_of_best.append(self.vehicles[0].kilometrage)
         self.avgerage_ages.append(self.get_avg_age())
         self.done_cycles = self.done_cycles + 1
+        self.return_to_start()
 
         # print("VEHICLE NUM:", len(self.vehicles))
         # print("AVERAGE AGE:", self.get_avg_age())
+
+    def return_to_start(self):
+        for v in self.vehicles:
+            # v.current_node = v.start_node
+            v.kilometrage = 0
+            v.visited_nodes = [v.current_node]
+        pass
+
     def get_vehicles_number(self):
         return len(self.vehicles)
 
@@ -95,25 +104,25 @@ class Genetics:
         self.vehicles.sort(key=attrgetter('kilometrage'), reverse=True)
 
     def hunger_games(self):
-        del self.vehicles[int(self.get_vehicles_number()/2)-1:-1]
+        del self.vehicles[int(self.get_vehicles_number() / 2) - 1:-1]
         pass
 
     def crossing(self):
 
-        for i in range(0, int(self.get_vehicles_number()/2)):
-            v1 = self.vehicles[i*2]
-            v2 = self.vehicles[i*2+1]
+        for i in range(0, int(self.get_vehicles_number() / 2)):
+            v1 = self.vehicles[i * 2]
+            v2 = self.vehicles[i * 2 + 1]
 
             v3 = vehicle.Vehicle(self.mapa)
             v4 = vehicle.Vehicle(self.mapa)
 
-            self.offspring(v1,v2,v3)
-            self.offspring(v2,v1,v4)
+            self.offspring(v1, v2, v3)
+            self.offspring(v2, v1, v4)
 
             self.vehicles.append(v3)
             self.vehicles.append(v4)
 
-    def offspring(self,v1,v2,v_out):
+    def offspring(self, v1, v2, v_out):
 
         v1_bin_chargers = self.chargers_to_binary_gene(v1)
         gene = self.chargers_to_binary_gene(v2)
@@ -137,7 +146,7 @@ class Genetics:
         # print("----------------")
 
     def chargers_to_binary_gene(self, v: vehicle.Vehicle):
-        gene = [0]*self.mapa.size
+        gene = [0] * self.mapa.size
         for i in range(self.mapa.size):
             if i in v.chargers:
                 gene[i] = 1
@@ -151,16 +160,16 @@ class Genetics:
         return chargers
 
     def get_gene_binary_slice(self, v: vehicle.Vehicle):
-        gene_nodes = [0]*self.mapa.size
+        gene_nodes = [0] * self.mapa.size
 
         for i in range(self.mapa.size):
             if i in v.visited_nodes:
                 gene_nodes[i] = 1
                 if i > 0:
-                    gene_nodes[i-1] = 1
+                    gene_nodes[i - 1] = 1
 
-                if i < self.mapa.size-1:
-                    gene_nodes[i+1] = 1
+                if i < self.mapa.size - 1:
+                    gene_nodes[i + 1] = 1
 
         return gene_nodes
 
@@ -176,18 +185,21 @@ class Genetics:
         return avg_age
 
     def plot_avg_age(self):
-        cycles = [i for i in range(1,self.done_cycles+1)]
-        plt.plot(cycles,self.avgerage_ages)
+        cycles = [i for i in range(1, self.done_cycles + 1)]
+        plt.plot(cycles, self.avgerage_ages)
+        plt.title("Average age")
         plt.show()
 
     def plot_charger_nums_of_best(self):
-        cycles = [i for i in range(1,self.done_cycles+1)]
-        plt.plot(cycles,self.charger_nums_of_best)
+        cycles = [i for i in range(1, self.done_cycles + 1)]
+        plt.plot(cycles, self.charger_nums_of_best)
+        plt.title("Number of chargers")
         plt.show()
 
     def plot_kilometrages_of_best(self):
-        cycles = [i for i in range(1,self.done_cycles+1)]
-        plt.plot(cycles,self.kilometrages_of_best)
+        cycles = [i for i in range(1, self.done_cycles + 1)]
+        plt.plot(cycles, self.kilometrages_of_best)
+        plt.title("Top kilometrage")
         plt.show()
 
     def QUICKFIX_visited_and_chargers_doubles(self):
