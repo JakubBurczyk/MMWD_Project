@@ -15,6 +15,9 @@ class Genetics:
         self.done_cycles = 0
         self.charger_nums_of_best = []
         self.kilometrages_of_best = []
+        self.visited_nodes_num_of_best = []
+        self.nodes_to_chargers_ratios_of_best = []
+
         if mapa is None:
             self.mapa = map.Map(nodes, edges, as_complete=False, tries=10000)
         else:
@@ -29,7 +32,9 @@ class Genetics:
             self.vehicles.append(vehicle.Vehicle(self.mapa))
 
     def cycle(self):
+        #FIXME
         self.QUICKFIX_visited_and_chargers_doubles()
+        self.return_to_start()
 
         for v in self.vehicles:
             v.charge()
@@ -41,16 +46,33 @@ class Genetics:
                 if result:
                     break
 
+
+
         self.rank()
+
+        self.charger_nums_of_best.append(len(self.vehicles[0].chargers))
+        self.kilometrages_of_best.append(self.vehicles[0].kilometrage)
+        self.visited_nodes_num_of_best.append(self.vehicles[0].visited_nodes_num)
+        self.nodes_to_chargers_ratios_of_best.append(self.vehicles[0].nodes_to_chargers_ratio)
+
+        self.avgerage_ages.append(self.get_avg_age())
+
         self.hunger_games()
         self.crossing()
 
-        self.rank()
-        self.charger_nums_of_best.append(len(self.vehicles[0].chargers))
-        self.kilometrages_of_best.append(self.vehicles[0].kilometrage)
-        self.avgerage_ages.append(self.get_avg_age())
+        #FIXME
+        self.QUICKFIX_visited_and_chargers_doubles()
+
+
+        # self.charger_nums_of_best.append(len(self.vehicles[0].chargers))
+        # self.kilometrages_of_best.append(self.vehicles[0].kilometrage)
+        # self.visited_nodes_num_of_best.append(self.vehicles[0].visited_nodes_num)
+        # self.nodes_to_chargers_ratios_of_best.append(self.vehicles[0].nodes_to_chargers_ratio)
+        #
+        # self.avgerage_ages.append(self.get_avg_age())
+
         self.done_cycles = self.done_cycles + 1
-        self.return_to_start()
+        # self.return_to_start() MOVED UP
 
         # print("VEHICLE NUM:", len(self.vehicles))
         # print("AVERAGE AGE:", self.get_avg_age())
@@ -58,8 +80,9 @@ class Genetics:
     def return_to_start(self):
         for v in self.vehicles:
             # v.current_node = v.start_node
-            v.kilometrage = 0
-            v.visited_nodes = [v.current_node]
+            # v.kilometrage = 0
+            # v.visited_nodes = [v.current_node]
+            pass
         pass
 
     def get_vehicles_number(self):
@@ -101,7 +124,13 @@ class Genetics:
             return True
 
     def rank(self):
-        self.vehicles.sort(key=attrgetter('kilometrage'), reverse=True)
+        for v in self.vehicles:
+            v.visited_nodes_num = len(v.visited_nodes)
+            v.nodes_to_chargers_ratio = v.visited_nodes_num/len(v.chargers)
+
+        # self.vehicles.sort(key=attrgetter('kilometrage'), reverse=True)
+        # self.vehicles.sort(key=attrgetter('visited_nodes_num'), reverse=True)
+        self.vehicles.sort(key=attrgetter('nodes_to_chargers_ratio'), reverse=False)
 
     def hunger_games(self):
         del self.vehicles[int(self.get_vehicles_number() / 2) - 1:-1]
@@ -200,6 +229,18 @@ class Genetics:
         cycles = [i for i in range(1, self.done_cycles + 1)]
         plt.plot(cycles, self.kilometrages_of_best)
         plt.title("Top kilometrage")
+        plt.show()
+
+    def plot_visited_nodes_num_of_best(self):
+        cycles = [i for i in range(1, self.done_cycles + 1)]
+        plt.plot(cycles, self.visited_nodes_num_of_best)
+        plt.title("Top vis nodes num")
+        plt.show()
+
+    def plot_nodes_to_chargers_ratios_of_best(self):
+        cycles = [i for i in range(1, self.done_cycles + 1)]
+        plt.plot(cycles, self.nodes_to_chargers_ratios_of_best)
+        plt.title("Top ratio")
         plt.show()
 
     def QUICKFIX_visited_and_chargers_doubles(self):

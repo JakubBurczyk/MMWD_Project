@@ -19,6 +19,8 @@ class Vehicle:
         self.visited_nodes = [self.current_node]
         self.kilometrage = 0
         self.age = 0
+        self.visited_nodes_num = 0
+        self.nodes_to_chargers_ratio = 0
 
         if self.occupied_IDs == []:
             self.ID = 0

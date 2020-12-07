@@ -34,6 +34,8 @@ gen.vehicles[0].print_status()
 gen.plot_avg_age()
 gen.plot_charger_nums_of_best()
 gen.plot_kilometrages_of_best()
+gen.plot_visited_nodes_num_of_best()
+gen.plot_nodes_to_chargers_ratios_of_best()
 
 print("EO MAIN")
 # m1.print()
