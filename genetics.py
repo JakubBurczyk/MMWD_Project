@@ -1,5 +1,6 @@
 from typing import List
 
+import matplotlib.pyplot as plt
 import map
 import vehicle
 import random
@@ -10,23 +11,30 @@ class Genetics:
 
     def __init__(self, nodes: int = 0, edges: int = 0, mapa: map.Map = None, vehicles_no: int = 99):
 
+        self.avgerage_ages = []
+        self.done_cycles = 0
+        self.charger_nums_of_best = []
+        self.kilometrages_of_best = []
         if mapa is None:
-            self.mapa = map.Map(nodes, edges, as_complete=False, tries=100)
+            self.mapa = map.Map(nodes, edges, as_complete=False, tries=10000)
         else:
             self.mapa = mapa
 
-        self.vehicles = [vehicle.Vehicle(self.mapa)]*vehicles_no
+        self.vehicles = []
 
-        # for i in range(vehicles_no):
-        #     self.vehicles.append(vehicle.Vehicle(self.mapa))
+        for i in range(vehicles_no):
+            self.vehicles.append(vehicle.Vehicle(self.mapa))
 
         while self.get_vehicles_number() % 4:
             self.vehicles.append(vehicle.Vehicle(self.mapa))
 
     def cycle(self):
+        self.QUICKFIX_visited_and_chargers_doubles()
 
         for v in self.vehicles:
             v.charge()
+            v.age = v.age + 1
+            #print("ID: ",v.ID,"  AGE: ", v.age)
             while True:
 
                 result = self.move_to_random_neighbour(v)
@@ -36,8 +44,15 @@ class Genetics:
         self.rank()
         self.hunger_games()
         self.crossing()
-        print("VEHICLE NUM:", len(self.vehicles))
 
+        self.rank()
+        self.charger_nums_of_best.append(len(self.vehicles[0].chargers))
+        self.kilometrages_of_best.append(self.vehicles[0].kilometrage)
+        self.avgerage_ages.append(self.get_avg_age())
+        self.done_cycles = self.done_cycles + 1
+
+        # print("VEHICLE NUM:", len(self.vehicles))
+        # print("AVERAGE AGE:", self.get_avg_age())
     def get_vehicles_number(self):
         return len(self.vehicles)
 
@@ -149,7 +164,33 @@ class Genetics:
 
         return gene_nodes
 
-
-
     def mutate(self):
         pass
+
+    def get_avg_age(self):
+        age_sum = 0
+        for v in self.vehicles:
+            age_sum = age_sum + v.age
+
+        avg_age = age_sum / self.get_vehicles_number()
+        return avg_age
+
+    def plot_avg_age(self):
+        cycles = [i for i in range(1,self.done_cycles+1)]
+        plt.plot(cycles,self.avgerage_ages)
+        plt.show()
+
+    def plot_charger_nums_of_best(self):
+        cycles = [i for i in range(1,self.done_cycles+1)]
+        plt.plot(cycles,self.charger_nums_of_best)
+        plt.show()
+
+    def plot_kilometrages_of_best(self):
+        cycles = [i for i in range(1,self.done_cycles+1)]
+        plt.plot(cycles,self.kilometrages_of_best)
+        plt.show()
+
+    def QUICKFIX_visited_and_chargers_doubles(self):
+        for v in self.vehicles:
+            v.chargers = list(set(v.chargers))
+            v.visited_nodes = list(set(v.visited_nodes))

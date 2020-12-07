@@ -90,14 +90,14 @@ class Map:
         check_edges(0)
 
         if 0 in visited_nodes:
-            print(visited_nodes)
+            #print(visited_nodes)
             return False
         else:
-            print(visited_nodes)
+            #print(visited_nodes)
             return True
 
     def graph_generator(self, size: int, edg: int, tries):
-        for i in range(tries - 1):
+        for i in range(tries):
 
             # Graph = self.delete_doubled_edges(nx.gnm_random_graph(size, edg))
             Graph=nx.gnm_random_graph(size, edg)

@@ -18,6 +18,7 @@ class Vehicle:
         self.chargers = []
         self.visited_nodes = [self.current_node]
         self.kilometrage = 0
+        self.age = 0
 
         if self.occupied_IDs == []:
             self.ID = 0
@@ -45,7 +46,8 @@ class Vehicle:
         print("Kilometrage: ", self.kilometrage, "[km]")
         print("Battery life: ", self.battery_life * 100, "%")
         print("---------------")
-        print("Gene: ", self.chargers)
+        print("Chargers: ", self.chargers)
+        print("Age: ", self.age)
         print("---------------")
 
     def calculate_range(self) -> float:
