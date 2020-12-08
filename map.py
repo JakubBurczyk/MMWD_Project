@@ -4,15 +4,15 @@ import random
 
 
 class Map:
-    min_edg_factor = 3 / 2
-    max_edg_factor = 5 / 2
+    min_edg_factor = 1 / 2
+    max_edg_factor = 3 / 2
     is_charger = 'is_charger'
     weight = 'weight'
 
-    min_weight = 3
+    min_weight = 2
     max_weight = 8
 
-    charger_energy = 500
+    charger_energy = 600
 
     def __init__(self, size: int, edg: int = 0, as_complete=False, tries: int = 100):
         if edg < size * self.min_edg_factor:
@@ -25,7 +25,7 @@ class Map:
             self.G = nx.complete_graph(size)
         else:
             self.G = self.graph_generator(size, edg, tries)
-            print(self.G.edges)
+            # print(self.G.edges)
         # initialize random weights in range <min_weight, max_weight>
 
         for (u, v) in self.G.edges():
@@ -55,7 +55,7 @@ class Map:
         for el in to_be_removed:
             if el in Graph.edges:
                 Graph.remove_edge(el[0], el[1])
-                print("removed")
+                # print("removed")
         return Graph
 
     def connectivity_check(self, Graph, size):
@@ -93,7 +93,7 @@ class Map:
         check_for_singles()
 
         check_edges(0)
-        print(visited_nodes)
+        # print(visited_nodes)
         if 0 in visited_nodes:
             good_island = []
             overboard = []
@@ -103,9 +103,9 @@ class Map:
                 else:
                     overboard.append(i)
             for node in overboard:
-                print("node to: ", node, "\n")
+                # print("node to: ", node, "\n")
                 choosen_ones = random.choices(good_island, k=2)
-                print("lacze z: ", choosen_ones, "\n")
+                # print("lacze z: ", choosen_ones, "\n")
                 Graph.add_edge(node, choosen_ones[0])
                 Graph.add_edge(node, choosen_ones[1])
             # print(visited_nodes)
@@ -117,7 +117,7 @@ class Map:
             # Graph = self.delete_doubled_edges(nx.gnm_random_graph(size, edg))
             Graph = nx.gnm_random_graph(size, edg)
             if self.connectivity_check(Graph, size):
-                print("Tries: ", i + 1)
+                # print("Tries: ", i + 1)
                 return Graph
         print("ERROR CREATING MAP")
         return None

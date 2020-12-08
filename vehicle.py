@@ -53,6 +53,7 @@ class Vehicle:
         # print("---------------")
         print('Chargers num: ', len(self.chargers))
         print('Visited  num: ', len(self.visited_nodes))
+        print("Chrg/Vis rat: ",len(self.chargers)/len(self.visited_nodes))
         print("Age: ", self.age)
         print("---------------")
 

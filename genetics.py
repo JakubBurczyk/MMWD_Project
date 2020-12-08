@@ -6,24 +6,34 @@ import vehicle
 import random
 from operator import attrgetter
 from enum import Enum
-
+import time, sys
 
 class SlicingType(Enum):
     VISITED_EPSILON = 0
     START_TO_RANDOM = 1
 
-
 class Genetics:
 
-    def __init__(self, nodes: int = 0, edges: int = 0, mapa: map.Map = None, vehicles_no: int = 100,cycles_number = 100, slicing_type = SlicingType.VISITED_EPSILON):
-        self.cycles_number = cycles_number
+    def __init__(self, nodes: int = 0, edges: int = 0, mapa: map.Map = None, vehicles_no: int = 100, cycles_number=100, slicing_type=SlicingType.VISITED_EPSILON, show_best=True, show_progress=True, plot_all=False, show_map_solution=False):
+
         self.avgerage_ages = []
         self.done_cycles = 0
         self.charger_nums_of_best = []
         self.kilometrages_of_best = []
         self.visited_nodes_num_of_best = []
         self.nodes_to_chargers_ratios_of_best = []
+
+        self.show_best = show_best
+        self.show_progress = show_progress
+        self.plot_all = plot_all
+        self.show_map_solution_p = show_map_solution
+
+        self.cycles_number = cycles_number
         self.slicing_type = slicing_type
+
+        self.best_vehicle = None
+
+        self.slice_epsilon = 2
 
         if mapa is None:
             self.mapa = map.Map(nodes, edges, as_complete=False, tries=10000)
@@ -38,20 +48,23 @@ class Genetics:
         while self.get_vehicles_number() % 4:
             self.vehicles.append(vehicle.Vehicle(self.mapa))
 
-        self.compute_solution(show_best=True,show_progress=True,plot_all=False)
+        self.compute_solution(show_best=self.show_best,show_progress=show_progress, plot_all=plot_all, show_map_solution_p=self.show_map_solution_p)
 
-    def compute_solution(self, show_best = True,show_progress = False, plot_all = False):
-        print("----START----")
+    def compute_solution(self, show_best = True,show_progress = False, plot_all = False, show_map_solution_p=False):
         for i in range(self.cycles_number):
             self.cycle()
 
-            if show_progress and i % int(self.cycles_number/3) == 0:
-                print("Cycle: ", i+1, " out of: ", self.cycles_number)
+            if show_progress:
+                progress = int((i+1)/self.cycles_number*100)
+                print("\rProgress: " + str(progress) + "% " + "[" + "*" * progress + " " * (100-progress) + "]", end="")
+                if i == self.cycles_number-1:
+                    print("\n=================")
 
-        # self.charger_nums_of_best .append(len(self.vehicles[0].chargers))
+        self.rank()
+        self.best_vehicle = self.vehicles[0]
 
         if show_best:
-            self.vehicles[0].print_status()
+            self.best_vehicle.print_status()
 
         if plot_all:
             self.plot_avg_age()
@@ -60,11 +73,13 @@ class Genetics:
             self.plot_visited_nodes_num_of_best()
             self.plot_nodes_to_chargers_ratios_of_best()
 
-        print("----DONE----\n\n")
+        if show_map_solution_p:
+            self.show_map_solution()
+
     def cycle(self):
         #FIXME
         self.QUICKFIX_visited_and_chargers_doubles()
-        self.return_to_start()
+        self.alzheimer()
 
         for v in self.vehicles:
             v.charge()
@@ -76,16 +91,7 @@ class Genetics:
                 if result:
                     break
 
-
-
         self.rank()
-
-        # self.charger_nums_of_best.append(len(self.vehicles[0].chargers))
-        # self.kilometrages_of_best.append(self.vehicles[0].kilometrage)
-        # self.visited_nodes_num_of_best.append(self.vehicles[0].visited_nodes_num)
-        # self.nodes_to_chargers_ratios_of_best.append(self.vehicles[0].nodes_to_chargers_ratio)
-        #
-        # self.avgerage_ages.append(self.get_avg_age())
 
         self.hunger_games()
         self.crossing()
@@ -94,21 +100,22 @@ class Genetics:
         self.QUICKFIX_visited_and_chargers_doubles()
 
         self.rank()
-        self.charger_nums_of_best.append(len(self.vehicles[0].chargers))
-        self.kilometrages_of_best.append(self.vehicles[0].kilometrage)
-        self.visited_nodes_num_of_best.append(self.vehicles[0].visited_nodes_num)
-        self.nodes_to_chargers_ratios_of_best.append(self.vehicles[0].nodes_to_chargers_ratio)
+
+        self.best_vehicle = self.vehicles[0]
+
+        self.charger_nums_of_best.append(len(self.best_vehicle.chargers))
+        self.kilometrages_of_best.append(self.best_vehicle.kilometrage)
+        self.visited_nodes_num_of_best.append(self.best_vehicle.visited_nodes_num)
+        self.nodes_to_chargers_ratios_of_best.append(self.best_vehicle.nodes_to_chargers_ratio)
 
         self.avgerage_ages.append(self.get_avg_age())
 
         self.done_cycles = self.done_cycles + 1
-        # self.return_to_start() MOVED UP
 
         # print("VEHICLE NUM:", len(self.vehicles))
         # print("AVERAGE AGE:", self.get_avg_age())
 
-    def return_to_start(self):
-
+    def alzheimer(self):
         def probability(age, max_age):
             if age >= max_age:
                 return 1
@@ -116,16 +123,17 @@ class Genetics:
                 return 1.5**(age-max_age)
 
         for v in self.vehicles:
-            # v.current_node = v.start_node
-            # v.kilometrage = 0
-            # v.visited_nodes = [v.current_node]
-            # if v.age % random.randint(5,30) == 0:
-            #     v.visited_nodes = random.sample(v.visited_nodes,int(len(v.visited_nodes)*0.5))
-            #     v.chargers = random.sample(v.chargers, int(len(v.chargers) * 1))
+            if random.uniform(0, 1) < probability(v.age, 30):
+                all_nodes = [i for i in range(self.mapa.size)]
+                nodes_to_remember = random.sample(all_nodes, int(len(all_nodes) * 0.8))
 
-            if random.uniform(0, 1) < probability(v.age,30):
-                v.visited_nodes = random.sample(v.visited_nodes, int(len(v.visited_nodes) * 0.2))
-            # pass
+                for i in nodes_to_remember:
+                    v.visited_nodes = list(filter(lambda n: n != i, v.visited_nodes))
+                    # v.chargers = list(filter(lambda n: n != i, v.chargers))
+                # v.visited_nodes = random.sample(v.visited_nodes, int(len(v.visited_nodes) * 0.1))
+                # v.chargers = random.sample(v.chargers, int(len(v.chargers) * 0.5))
+
+
         pass
 
     def get_vehicles_number(self):
@@ -236,15 +244,15 @@ class Genetics:
         gene_nodes = [0] * self.mapa.size
 
         if self.slicing_type == SlicingType.VISITED_EPSILON:
-            slice_epsilon = 2
+
             for i in range(self.mapa.size):
                 if i in v.visited_nodes:
                     gene_nodes[i] = 1
-                    if i >= slice_epsilon:
-                        for j in range(1,slice_epsilon+1):
+                    if i >= self.slice_epsilon:
+                        for j in range(1,self.slice_epsilon+1):
                             gene_nodes[i - j] = 1
-                    if i < self.mapa.size - slice_epsilon:
-                        for j in range(1, slice_epsilon + 1):
+                    if i < self.mapa.size - self.slice_epsilon:
+                        for j in range(1, self.slice_epsilon + 1):
                             gene_nodes[i + j] = 1
 
         elif self.slicing_type == SlicingType.START_TO_RANDOM:
@@ -299,3 +307,11 @@ class Genetics:
         for v in self.vehicles:
             v.chargers = list(set(v.chargers))
             v.visited_nodes = list(set(v.visited_nodes))
+
+    def show_map_solution(self):
+        map_copy = self.mapa
+        for c in self.best_vehicle.chargers:
+            map_copy.set_as_charger(c)
+
+        map_copy.print()
+

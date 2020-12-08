@@ -2,14 +2,16 @@ import map
 import vehicle
 import genetics
 
-vehicles_number = 50
-cycles = 100
+vehicles_number = 20
+cycles = 200
 
-mapa = map.Map(100, 0, as_complete=False, tries=10000)
+mapa = map.Map(size=100, as_complete=False, tries=10000)
 mapa.print()
 
-gen1 = genetics.Genetics(mapa=mapa, vehicles_no=vehicles_number, cycles_number=cycles, slicing_type=genetics.SlicingType.VISITED_EPSILON)
-gen2 = genetics.Genetics(mapa=mapa, vehicles_no=vehicles_number, cycles_number=cycles, slicing_type=genetics.SlicingType.VISITED_EPSILON)
+gen1 = genetics.Genetics(mapa=mapa, vehicles_no=vehicles_number, cycles_number=cycles, slicing_type=genetics.SlicingType.START_TO_RANDOM,show_best=True, show_progress=True, plot_all=True, show_map_solution=False)
+# gen2 = genetics.Genetics(mapa=mapa, vehicles_no=vehicles_number, cycles_number=cycles, slicing_type=genetics.SlicingType.START_TO_RANDOM,show_best=True, show_progress=True, plot_all=False, show_map_solution=False)
+
+
 
 #gen.mapa.print()
 
