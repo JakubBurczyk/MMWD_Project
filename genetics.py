@@ -60,7 +60,7 @@ class Genetics:
             self.plot_visited_nodes_num_of_best()
             self.plot_nodes_to_chargers_ratios_of_best()
 
-        print("----DONE----")
+        print("----DONE----\n\n")
     def cycle(self):
         #FIXME
         self.QUICKFIX_visited_and_chargers_doubles()

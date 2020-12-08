@@ -82,7 +82,6 @@ class Map:
                         counter += 1
                 if counter < 3:
                     listofothernodes = []
-                    print("adasdasd ",n)
                     for i in range(size):
                         if i != n:
                             listofothernodes.append(i)
@@ -120,7 +119,7 @@ class Map:
             if self.connectivity_check(Graph, size):
                 print("Tries: ", i + 1)
                 return Graph
-        print("whaat")
+        print("ERROR CREATING MAP")
         return None
 
     def print(self, edge_filter=0):

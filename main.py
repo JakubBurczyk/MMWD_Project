@@ -3,13 +3,13 @@ import vehicle
 import genetics
 
 vehicles_number = 50
-cycles = 200
+cycles = 100
 
 mapa = map.Map(100, 0, as_complete=False, tries=10000)
 mapa.print()
 
-gen1 = genetics.Genetics(mapa=mapa, vehicles_no=vehicles_number, slicing_type=genetics.SlicingType.VISITED_EPSILON)
-gen2 = genetics.Genetics(mapa=mapa, vehicles_no=vehicles_number, slicing_type=genetics.SlicingType.VISITED_EPSILON)
+gen1 = genetics.Genetics(mapa=mapa, vehicles_no=vehicles_number, cycles_number=cycles, slicing_type=genetics.SlicingType.VISITED_EPSILON)
+gen2 = genetics.Genetics(mapa=mapa, vehicles_no=vehicles_number, cycles_number=cycles, slicing_type=genetics.SlicingType.VISITED_EPSILON)
 
 #gen.mapa.print()
 
