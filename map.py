@@ -72,20 +72,26 @@ class Map:
                         visited_nodes[u] = 1
                         check_edges(u)
 
-        # def check_for_singles():
-        #     for n in Graph.nodes:
-        #         counter = 0
-        #         for (u, v) in Graph.edges:
-        #             if u == n:
-        #                 counter += 1
-        #             elif v == n:
-        #                 counter += 1
-        #         if counter < 2:
-        #             return False
-        #     return True
-        #
-        # if not check_for_singles():
-        #     return False
+        def check_for_singles():
+            for n in Graph.nodes:
+                counter = 0
+                for (u, v) in Graph.edges:
+                    if u == n:
+                        counter += 1
+                    elif v == n:
+                        counter += 1
+                if counter < 3:
+                    listofothernodes = []
+                    print("adasdasd ",n)
+                    for i in range(size):
+                        if i != n:
+                            listofothernodes.append(i)
+                    choosen_ones = random.choices(listofothernodes, k=3)
+                    Graph.add_edge(n, choosen_ones[0])
+                    Graph.add_edge(n, choosen_ones[1])
+                    Graph.add_edge(n, choosen_ones[2])
+
+        check_for_singles()
 
         check_edges(0)
         print(visited_nodes)
@@ -98,16 +104,13 @@ class Map:
                 else:
                     overboard.append(i)
             for node in overboard:
-                print("node to: ",node,"\n")
+                print("node to: ", node, "\n")
                 choosen_ones = random.choices(good_island, k=2)
                 print("lacze z: ", choosen_ones, "\n")
                 Graph.add_edge(node, choosen_ones[0])
                 Graph.add_edge(node, choosen_ones[1])
             # print(visited_nodes)
-
-            return True
-        else:
-            return True
+        return True
 
     def graph_generator(self, size: int, edg: int, tries):
         for i in range(tries):
@@ -115,8 +118,6 @@ class Map:
             # Graph = self.delete_doubled_edges(nx.gnm_random_graph(size, edg))
             Graph = nx.gnm_random_graph(size, edg)
             if self.connectivity_check(Graph, size):
-                self.connectivity_check(Graph, size)
-                self.connectivity_check(Graph, size)
                 print("Tries: ", i + 1)
                 return Graph
         print("whaat")

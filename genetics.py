@@ -50,12 +50,12 @@ class Genetics:
 
         self.rank()
 
-        self.charger_nums_of_best.append(len(self.vehicles[0].chargers))
-        self.kilometrages_of_best.append(self.vehicles[0].kilometrage)
-        self.visited_nodes_num_of_best.append(self.vehicles[0].visited_nodes_num)
-        self.nodes_to_chargers_ratios_of_best.append(self.vehicles[0].nodes_to_chargers_ratio)
-
-        self.avgerage_ages.append(self.get_avg_age())
+        # self.charger_nums_of_best.append(len(self.vehicles[0].chargers))
+        # self.kilometrages_of_best.append(self.vehicles[0].kilometrage)
+        # self.visited_nodes_num_of_best.append(self.vehicles[0].visited_nodes_num)
+        # self.nodes_to_chargers_ratios_of_best.append(self.vehicles[0].nodes_to_chargers_ratio)
+        #
+        # self.avgerage_ages.append(self.get_avg_age())
 
         self.hunger_games()
         self.crossing()
@@ -63,13 +63,13 @@ class Genetics:
         #FIXME
         self.QUICKFIX_visited_and_chargers_doubles()
 
+        self.rank()
+        self.charger_nums_of_best.append(len(self.vehicles[0].chargers))
+        self.kilometrages_of_best.append(self.vehicles[0].kilometrage)
+        self.visited_nodes_num_of_best.append(self.vehicles[0].visited_nodes_num)
+        self.nodes_to_chargers_ratios_of_best.append(self.vehicles[0].nodes_to_chargers_ratio)
 
-        # self.charger_nums_of_best.append(len(self.vehicles[0].chargers))
-        # self.kilometrages_of_best.append(self.vehicles[0].kilometrage)
-        # self.visited_nodes_num_of_best.append(self.vehicles[0].visited_nodes_num)
-        # self.nodes_to_chargers_ratios_of_best.append(self.vehicles[0].nodes_to_chargers_ratio)
-        #
-        # self.avgerage_ages.append(self.get_avg_age())
+        self.avgerage_ages.append(self.get_avg_age())
 
         self.done_cycles = self.done_cycles + 1
         # self.return_to_start() MOVED UP
@@ -78,11 +78,24 @@ class Genetics:
         # print("AVERAGE AGE:", self.get_avg_age())
 
     def return_to_start(self):
+
+        def probability(age, max_age):
+            if age >= max_age:
+                return 1
+            else:
+                return 1.5**(age-max_age)
+
         for v in self.vehicles:
             # v.current_node = v.start_node
             # v.kilometrage = 0
             # v.visited_nodes = [v.current_node]
-            pass
+            # if v.age % random.randint(5,30) == 0:
+            #     v.visited_nodes = random.sample(v.visited_nodes,int(len(v.visited_nodes)*0.5))
+            #     v.chargers = random.sample(v.chargers, int(len(v.chargers) * 1))
+
+            if random.uniform(0, 1) < probability(v.age,30):
+                v.visited_nodes = random.sample(v.visited_nodes, int(len(v.visited_nodes) * 0.2))
+            # pass
         pass
 
     def get_vehicles_number(self):
@@ -126,8 +139,8 @@ class Genetics:
     def rank(self):
         for v in self.vehicles:
             v.visited_nodes_num = len(v.visited_nodes)
-            v.nodes_to_chargers_ratio = v.visited_nodes_num/len(v.chargers)
-
+           # v.nodes_to_chargers_ratio = v.visited_nodes_num/len(v.chargers)
+            v.nodes_to_chargers_ratio = len(v.chargers) / v.visited_nodes_num
         # self.vehicles.sort(key=attrgetter('kilometrage'), reverse=True)
         # self.vehicles.sort(key=attrgetter('visited_nodes_num'), reverse=True)
         self.vehicles.sort(key=attrgetter('nodes_to_chargers_ratio'), reverse=False)

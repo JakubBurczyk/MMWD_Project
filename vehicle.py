@@ -49,6 +49,10 @@ class Vehicle:
         print("Battery life: ", self.battery_life * 100, "%")
         print("---------------")
         print("Chargers: ", self.chargers)
+        print("Visited: ", self.visited_nodes)
+        print("---------------")
+        print('Chargers num: ', len(self.chargers))
+        print('Visited  num: ', len(self.visited_nodes))
         print("Age: ", self.age)
         print("---------------")
 

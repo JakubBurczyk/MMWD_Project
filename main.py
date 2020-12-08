@@ -17,12 +17,12 @@ import genetics
 # v1.print_status()
 # v2.print_status()
 
-gen = genetics.Genetics(nodes=100, edges=0, vehicles_no=200)
+gen = genetics.Genetics(nodes=100, edges=0, vehicles_no=50)
 # print(gen.mapa.neighbours(2))
 
 gen.mapa.print()
 
-for i in range(1000):
+for i in range(200):
     print("-----------------CYCLE NUMBER ", i + 1, "-----------------")
     gen.cycle()
     for v in gen.vehicles:
