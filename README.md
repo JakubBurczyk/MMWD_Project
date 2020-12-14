@@ -64,3 +64,7 @@ Jej parametry to:
 * ```mapa``` (opt) - jeśli podano obiekt klasy ```map.Map()``` wartości nodes i edges zostaną zignorowane, nie nastąpi ponowna generacja grafu, ale zostanie wyznaczone rozwiązanie dla zadanego pod tym parametrem grafu
    
    UWAGA #1: Domyślnie parametr ten przyjmuje wartość ```None``` i nie należy go zmieniać jeśli chcemy wygenerować graf o podanym ```nodes``` i ```edges``` dla danej instancji ```genetics.Genetics()```
+
+* ```vehicles_no``` - liczba osobników populacji
+* ```cycles_number``` - liczba cykli krzyżowania algorytmu genetycznego
+* ```slicing_type``` (opt) - typ krzyżowania, domyślnie wartość ```genetics.SlicingType.MULTI_POINT_VISITED_EPSILON```, lub inaczej ```0```
