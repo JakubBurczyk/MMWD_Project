@@ -1,10 +1,10 @@
 # SPIS TREŚCI:
-* [Wymagane moduły](#Wymagane-moduły)
-* [Instrukcja obsługi](#INSTRUKCJA-OBSŁUGI)
-   * [Moduły](##Moduły)
-   * [Klasy](##Klasy)
-      * [enum genetics.SlicingType()](##```enum-genetics.SlicingType()```:)
-# Wymagane moduły:
+* [Wymagane moduły zewnętrzne](#Wymagane-moduły-zewnętrzne)
+* [Moduły](#Moduły)
+* [Klasy](#Klasy)
+* [enum genetics.SlicingType()](##```enum-genetics.SlicingType()```:)
+
+# Wymagane moduły zewnętrzne:
 
 * NetworkX 2.5
 * Matplotlib 3.3.2
@@ -14,9 +14,7 @@ pip install networkx
 pip install matplotlib
 ```
 
-# INSTRUKCJA OBSŁUGI:
-
-## Moduły:
+# Moduły:
 Do wyznaczenia rozwiązania problemu potrzebne są 2 moduły:
 * map
 * genetics
@@ -25,7 +23,7 @@ Do wyznaczenia rozwiązania problemu potrzebne są 2 moduły:
 import map
 import genetics
 ```
-## Klasy:
+# Klasy:
 ## ```enum genetics.SlicingType()```:
 Klasa genetics.SlicingType jest klasą wyliczeniową (enum) pozwalającą na zmianę sposobu krzyżowania osobników populacji.
 
