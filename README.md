@@ -2,8 +2,9 @@
 * [Wymagane moduły zewnętrzne](#Wymagane-moduły-zewnętrzne)
 * [Moduły](#Moduły)
 * [Klasy](#Klasy)
-   * [a](#enum-geneticsslicingtype)
-
+	* [enum genetics.SlicingType()](#enum-geneticsslicingtype)
+	* [map.Map()](#mapmap)
+	
 # Wymagane moduły zewnętrzne:
 
 * NetworkX 2.5
