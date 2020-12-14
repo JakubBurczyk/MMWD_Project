@@ -6,15 +6,14 @@ import vehicle
 import random
 from operator import attrgetter
 from enum import Enum
-import time, sys
 
 class SlicingType(Enum):
-    VISITED_EPSILON = 0
-    START_TO_RANDOM = 1
+    MULTI_POINT_VISITED_EPSILON = 0
+    ONE_POINT_RAND = 1
 
 class Genetics:
 
-    def __init__(self, nodes: int = 0, edges: int = 0, mapa: map.Map = None, vehicles_no: int = 100, cycles_number=100, slicing_type=SlicingType.VISITED_EPSILON, show_best=True, show_progress=True, plot_all=False, show_map_solution=False):
+    def __init__(self, nodes: int = 0, edges: int = 0, mapa: map.Map = None, vehicles_no: int = 100, cycles_number=100, slicing_type=SlicingType.MULTI_POINT_VISITED_EPSILON):
 
         self.avgerage_ages = []
         self.done_cycles = 0
@@ -22,11 +21,6 @@ class Genetics:
         self.kilometrages_of_best = []
         self.visited_nodes_num_of_best = []
         self.nodes_to_chargers_ratios_of_best = []
-
-        self.show_best = show_best
-        self.show_progress = show_progress
-        self.plot_all = plot_all
-        self.show_map_solution_p = show_map_solution
 
         self.cycles_number = cycles_number
         self.slicing_type = slicing_type
@@ -48,33 +42,27 @@ class Genetics:
         while self.get_vehicles_number() % 4:
             self.vehicles.append(vehicle.Vehicle(self.mapa))
 
-        self.compute_solution(show_best=self.show_best,show_progress=show_progress, plot_all=plot_all, show_map_solution_p=self.show_map_solution_p)
-
-    def compute_solution(self, show_best = True,show_progress = False, plot_all = False, show_map_solution_p=False):
+    def solve(self):
         for i in range(self.cycles_number):
             self.cycle()
 
-            if show_progress:
-                progress = int((i+1)/self.cycles_number*100)
-                print("\rProgress: " + str(progress) + "% " + "[" + "*" * progress + " " * (100-progress) + "]", end="")
-                if i == self.cycles_number-1:
-                    print("\n=================")
+            progress = int((i+1)/self.cycles_number*100)
+            print("\rProgress: " + str(progress) + "% " + "[" + "#" * progress + "." * (100-progress) + "]", end="")
+            if i == self.cycles_number - 1:
+                print("\n")
 
         self.rank()
         self.best_vehicle = self.vehicles[0]
 
-        if show_best:
-            self.best_vehicle.print_status()
-
-        if plot_all:
-            self.plot_avg_age()
-            self.plot_charger_nums_of_best()
-            self.plot_kilometrages_of_best()
-            self.plot_visited_nodes_num_of_best()
-            self.plot_nodes_to_chargers_ratios_of_best()
-
-        if show_map_solution_p:
-            self.show_map_solution()
+        # self.best_vehicle.print_status()
+        #
+        # self.plot_avg_age()
+        # self.plot_charger_nums_of_best()
+        # self.plot_kilometrages_of_best()
+        # self.plot_visited_nodes_num_of_best()
+        # self.plot_nodes_to_chargers_ratios_of_best()
+        #
+        # self.show_map_solution()
 
     def cycle(self):
         #FIXME
@@ -243,7 +231,7 @@ class Genetics:
     def get_gene_binary_slice(self, v: vehicle.Vehicle):
         gene_nodes = [0] * self.mapa.size
 
-        if self.slicing_type == SlicingType.VISITED_EPSILON:
+        if self.slicing_type == SlicingType.MULTI_POINT_VISITED_EPSILON:
 
             for i in range(self.mapa.size):
                 if i in v.visited_nodes:
@@ -255,7 +243,7 @@ class Genetics:
                         for j in range(1, self.slice_epsilon + 1):
                             gene_nodes[i + j] = 1
 
-        elif self.slicing_type == SlicingType.START_TO_RANDOM:
+        elif self.slicing_type == SlicingType.ONE_POINT_RAND:
             slice_point = random.randint(0,len(gene_nodes))
             for i in range(0,slice_point):
                 gene_nodes[i]= 1
@@ -276,7 +264,9 @@ class Genetics:
     def plot_avg_age(self):
         cycles = [i for i in range(1, self.done_cycles + 1)]
         plt.plot(cycles, self.avgerage_ages)
-        plt.title("Average age")
+        plt.title("Średnia wieku populacji")
+        plt.xlabel("Cykl")
+        plt.ylabel("Wiek (cykle)")
         plt.show()
 
     def plot_charger_nums_of_best(self):
@@ -315,3 +305,13 @@ class Genetics:
 
         map_copy.print()
 
+    def print_best_vehicle(self):
+        self.best_vehicle.print_status()
+
+    def plot(self):
+        self.plot_avg_age()
+        self.plot_charger_nums_of_best()
+        self.plot_kilometrages_of_best()
+        self.plot_visited_nodes_num_of_best()
+        self.plot_nodes_to_chargers_ratios_of_best()
+        self.show_map_solution()

@@ -14,7 +14,7 @@ class Map:
 
     charger_energy = 600
 
-    def __init__(self, size: int, edg: int = 0, as_complete=False, tries: int = 100):
+    def __init__(self, size: int, edg: int = 0, as_complete=False, tries: int = 10):
         if edg < size * self.min_edg_factor:
             edg = random.randint(size * self.min_edg_factor, size * self.max_edg_factor)
 
