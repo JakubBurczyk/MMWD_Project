@@ -33,7 +33,7 @@ Posiada dwie wartości:
 
 ```MULTI_POINT_VISITED_EPSILON = 0``` oznacza krzyżowanie wielopunktowe, wycinające fragmenty genomu z otoczenia binarnie reprezentowanej listy odwiedzonych przez pojazd (osobnika) wierzchołków, przykładowo
    
-```ONE_POINT_RAND = 1``` oznacza krzyżowanie jednopunktowe z losowo wybranym punktem granicznym genomuL
+```ONE_POINT_RAND = 1``` oznacza krzyżowanie jednopunktowe z losowo wybranym punktem granicznym genomu.
 
 
 ## ```mapa.Map()```:
@@ -61,7 +61,7 @@ Jej parametry to:
 
    UWAGA #1: Domyślne wartości tych dwóch parametrów wynoszą ```0```, a więc wynikowa mapa będzie rozmiaru ```0```
    
-* ```mapa``` (opt) - jeśli podano obiekt klasy ```map.MAP()``` wartości nodes i edges zostaną zignorowane, nie nastąpi ponowna generacja grafu, ale zostanie wyznaczone rozwiązanie dla zadanego pod tym parametrem grafu
+* ```mapa``` (opt) - jeśli podano obiekt klasy ```map.Map()``` wartości nodes i edges zostaną zignorowane, nie nastąpi ponowna generacja grafu, ale zostanie wyznaczone rozwiązanie dla zadanego pod tym parametrem grafu
    
    UWAGA #1: Domyślnie parametr ten przyjmuje wartość ```None``` i nie należy go zmieniać jeśli chcemy wygenerować graf o podanym ```nodes``` i ```edges``` dla danej instancji ```genetics.Genetics()```
 
