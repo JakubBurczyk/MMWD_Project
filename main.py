@@ -14,3 +14,5 @@ for i in range(attempts):
     gen[i].solve()
     gen[i].print_best_vehicle()
     gen[i].plot()
+
+print('akakakak')
