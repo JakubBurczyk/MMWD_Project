@@ -91,11 +91,32 @@ Funkcja wyświetlająca wykresy statystyczne wykonania algorytmu. Są to:
 
 # Przykłady:
 ## Przykład 1:
-Przykładowy kod prezentuje sposób rozwiązania problemu, dla losowej, wygenerowanej przez klasę ```genetics.Genetics()``` mapy miast o 10 wierzchołkach, 20 pojazdach (osobnikach), przeprowadzająca 30 cykli, stosująca domyśle krzyżowanie wielopunktowe.
+Przykładowy kod prezentuje sposób rozwiązania problemu, dla losowej, wygenerowanej przez klasę ```genetics.Genetics()``` mapy miast o 20 wierzchołkach, 10 pojazdach (osobnikach), przeprowadzająca 50 cykli, stosująca domyśle krzyżowanie wielopunktowe.
 ```python
-import map
 import genetics
 
+gen = genetics.Genetics(nodes=20, vehicles_no=10, cycles_number=50)
+gen.solve()
+gen.print_best_vehicle()
 
+```
+### CONSOLE OUTPUT
+```
+Progress: 100% [####################################################################################################]
+
+----VEHICLE----
+ID:  164
+Start:  9
+Current node:  7
+Battery:  1000  /  1000
+Range:  20.0 [km]
+Kilometrage:  73 [km]
+Battery life:  100 %
+---------------
+Chargers num:  7
+Visited  num:  19
+Chrg/Vis rat:  0.3684210526315789
+Age:  23
+---------------
 
 ```
