@@ -2,7 +2,7 @@
 * [Wymagane moduły zewnętrzne](#Wymagane-moduły-zewnętrzne)
 * [Moduły](#Moduły)
 * [Klasy](#Klasy)
-   * [a](##kurwa)
+   * [a](##Klasy)
 
 # Wymagane moduły zewnętrzne:
 
