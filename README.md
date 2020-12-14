@@ -103,7 +103,7 @@ import genetics
 gen = genetics.Genetics(nodes=20, vehicles_no=10, cycles_number=50)
 gen.solve()
 gen.print_best_vehicle()
-gen.plot
+gen.plot()
 ```
 ### CONSOLE OUTPUT
 ```
