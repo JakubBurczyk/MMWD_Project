@@ -10,8 +10,8 @@
 	* [genetics.print_best_vehicle()](#geneticsprint_best_vehicle)
 	* [genetics.plot()](#geneticsplot)
 * [Przykłady](#Przykłady)
-	* [1](#przykład-1)
-	* [2](#przykład-2)
+	* [Przykład 1](#przykład-1)
+	* [Przykład 2](#przykład-2)
 # Wymagane moduły zewnętrzne:
 
 * NetworkX 2.5
@@ -99,7 +99,7 @@ import genetics
 gen = genetics.Genetics(nodes=20, vehicles_no=10, cycles_number=50)
 gen.solve()
 gen.print_best_vehicle()
-
+gen.plot
 ```
 ### CONSOLE OUTPUT
 ```
@@ -120,4 +120,24 @@ Chrg/Vis rat:  0.3684210526315789
 Age:  23
 ---------------
 
+```
+## Przykład 2:
+Przykładowy kod badający dwukrotne podejście do rozwiązania problemu dla takiej samej mapy (grafu).
+```python
+import map
+import genetics
+
+vehicles_number = 100
+cycles = 100
+attempts = 2
+
+mapa = map.Map(size=100)
+mapa.print()
+
+gen = [genetics.Genetics(mapa=mapa, vehicles_no=vehicles_number, cycles_number=cycles, slicing_type=genetics.SlicingType.MULTI_POINT_VISITED_EPSILON)] * attempts
+
+for i in range(attempts):
+    gen[i].solve()
+    gen[i].print_best_vehicle()
+    gen[i].plot()
 ```
