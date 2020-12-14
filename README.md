@@ -2,7 +2,7 @@
 * [Wymagane moduły zewnętrzne](#Wymagane-moduły-zewnętrzne)
 * [Moduły](#Moduły)
 * [Klasy](#Klasy)
-   * [genetics.SlicingType()](##kurwa)
+   * [a](##kurwa)
 
 # Wymagane moduły zewnętrzne:
 
