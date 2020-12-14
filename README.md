@@ -1,8 +1,9 @@
 # SPIS TREŚCI:
 * [Wymagane moduły](#Wymagane-moduły)
-* [Instrukcja obsługi](https://github.com/JakubBurczyk/MMWD_Project/blob/master/README.md#instrukcja-obs%C5%82ugi)
-   * [Moduły]()
-   * []()
+* [Instrukcja obsługi](#INSTRUKCJA-OBSŁUGI)
+   * [Moduły](##Moduły)
+   * [Klasy](##Klasy)
+      * [a]
 # Wymagane moduły:
 
 * NetworkX 2.5
