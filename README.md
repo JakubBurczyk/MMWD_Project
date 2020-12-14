@@ -2,7 +2,7 @@
 * [Wymagane moduły zewnętrzne](#Wymagane-moduły-zewnętrzne)
 * [Moduły](#Moduły)
 * [Klasy](#Klasy)
-* [enum genetics.SlicingType()](##```enum-genetics.SlicingType()```:)
+* [enum genetics.SlicingType()](##-```enum-genetics.SlicingType()```:)
 
 # Wymagane moduły zewnętrzne:
 
