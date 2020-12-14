@@ -1,5 +1,6 @@
 # SPIS TREŚCI:
-[A](https://github.com/JakubBurczyk/MMWD_Project/blob/master/README.md)
+[Wymagane moduły](https://github.com/JakubBurczyk/MMWD_Project/blob/master/README.md#wymagane-modu%C5%82y)
+[Instrukcja obsługi](https://github.com/JakubBurczyk/MMWD_Project/blob/master/README.md#instrukcja-obs%C5%82ugi)
 
 # Wymagane moduły:
 
