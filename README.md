@@ -25,7 +25,7 @@ import map
 import genetics
 ```
 ## Klasy:
-### ```enum genetics.SlicingType```:
+## ```enum genetics.SlicingType()```:
 Klasa genetics.SlicingType jest klasą wyliczeniową (enum) pozwalającą na zmianę sposobu krzyżowania osobników populacji.
 
 Posiada dwie wartości:
@@ -35,7 +35,7 @@ Posiada dwie wartości:
 ```ONE_POINT_RAND = 1``` oznacza krzyżowanie jednopunktowe z losowo wybranym punktem granicznym genomuL
 
 
-### ```mapa.Map```:
+## ```mapa.Map()```:
 Jest to klasa odpoeiwdzialna za reprezentację sieci popłączonych drogami miast, za pomocą grafu ważonego.
 Użytkownik może zdefiniować własny obiekt tej klasy, który może zostać poddany analizie za pomoca algorutmu genetycznego.
 ```python
@@ -49,7 +49,7 @@ UWAGA #1: W przypadku podania zbyt dużej lub zbyt małej wartości względem il
 
 * ```as_complete``` (opt) - domyślnie ```False```, dla wartości ```True``` następuje generacja pełnego grafu o zadanym ```size```
 
-### ```genetics.Genetics```
+## ```genetics.Genetics()```
 Jest najważniejszą klasą do funkcjonalności algorytmu i może funkcjonować samodzielnie bez ręcznego tworzenia instancji klasy ```mapa.Map```:
 ```python
 genetics.Genetics(nodes, edges, mapa, vehicles_no, cycles_number, slicing_type)
