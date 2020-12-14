@@ -1,4 +1,7 @@
-# Wymagane moduły:
+#SPIS TREŚCI:
+[A](https://github.com/JakubBurczyk/MMWD_Project/blob/master/README.md#Wymagane moduły)
+
+#Wymagane moduły:
 
 * NetworkX 2.5
 * Matplotlib 3.3.2
@@ -8,8 +11,9 @@ pip install networkx
 pip install matplotlib
 ```
 
-# INSTRUKCJA OBSŁUGI:
+#INSTRUKCJA OBSŁUGI:
 
+## Moduły:
 Do wyznaczenia rozwiązania problemu potrzebne są 2 moduły:
 * map
 * genetics
