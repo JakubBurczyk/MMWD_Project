@@ -2,7 +2,7 @@
 * [Wymagane moduły zewnętrzne](#Wymagane-moduły-zewnętrzne)
 * [Moduły](#Moduły)
 * [Klasy](#Klasy)
-* [a](##<!-- slicing -->)
+* [a](##<!--slicing-->)
 
 # Wymagane moduły zewnętrzne:
 
