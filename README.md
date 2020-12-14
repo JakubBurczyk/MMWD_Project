@@ -25,7 +25,7 @@ import genetics
 ```
 # Klasy:
 
-## enum genetics:SllicingType():
+## ```enum genetics.SlicingType()```:
 Klasa ```genetics.SlicingType()``` jest klasą wyliczeniową (enum) pozwalającą na zmianę sposobu krzyżowania osobników populacji.
 
 Posiada dwie wartości:
