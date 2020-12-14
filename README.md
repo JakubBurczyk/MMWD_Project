@@ -73,7 +73,7 @@ Jej parametry to:
 
 #Przykłady:
 ## Przykład 1:
-Przykładowy kod prezentuje sposób rozwiązania problemu, dla losowej, wygenerowanej przez klasę ```genetics.Genetics()``` mapy miast:
+Przykładowy kod prezentuje sposób rozwiązania problemu, dla losowej, wygenerowanej przez klasę ```genetics.Genetics()``` mapy miast o 10 wierzchołkach, 20 pojazdach (osobnikach), przeprowadzająca 30 cykli, stosująca domyśle krzyżowanie wielopunktowe.
 ```python
 import map
 import genetics
