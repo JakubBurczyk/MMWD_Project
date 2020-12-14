@@ -6,12 +6,10 @@ Required packages:
 USER MANUAL:
 
 Do wyznaczenia rozwiązania potrzebne są 2 moduły:
--map
--genetics
+*map
+*genetics
 
-###CODE SNIPPET###
-
+```python
 import map
 import genetics
-
-###END OF CODE###
+```
