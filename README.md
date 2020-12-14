@@ -1,7 +1,8 @@
 # SPIS TREŚCI:
-[Wymagane moduły](https://github.com/JakubBurczyk/MMWD_Project/blob/master/README.md#wymagane-modu%C5%82y)
-[Instrukcja obsługi](https://github.com/JakubBurczyk/MMWD_Project/blob/master/README.md#instrukcja-obs%C5%82ugi)
-
+* [Wymagane moduły](https://github.com/JakubBurczyk/MMWD_Project/blob/master/README.md#wymagane-modu%C5%82y)
+* [Instrukcja obsługi](https://github.com/JakubBurczyk/MMWD_Project/blob/master/README.md#instrukcja-obs%C5%82ugi)
+   * [Moduły]()
+   * []()
 # Wymagane moduły:
 
 * NetworkX 2.5
@@ -23,6 +24,19 @@ Do wyznaczenia rozwiązania problemu potrzebne są 2 moduły:
 import map
 import genetics
 ```
+## Klasy:
+### ```enum genetics.SlicingType```:
+Klasa genetics.SlicingType jest klasą wyliczeniową (enum) pozwalającą na zmianę sposobu krzyżowania osobników populacji.
+
+Posiada dwie wartości:
+
+```MULTI_POINT_VISITED_EPSILON``` o liczbowej wartości ```0```
+```ONE_POINT_RAND``` o liczbowej wartości ```1```
+
+```MULTI_POINT_VISITED_EPSILON``` oznacza krzyżowanie wielopunktowe, wycinające fragmenty genomu z otoczenia binarnie reprezentowanej listy odwiedzonych przez pojazd (osobnika) wierzchołków, przykładowo
+   
+```ONE_POINT_RAND``` oznacza krzyżowanie jednopunktowe z losowo wybranym punktem granicznym genomuL
+
 
 Najważniejszą klasą, jest ```genetics.Genetics()```, która może funkcjonować samodzielnie:
 ```python
