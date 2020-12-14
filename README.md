@@ -5,6 +5,7 @@
 	* [enum genetics.SlicingType()](#enum-geneticsslicingtype)
 	* [map.Map()](#mapamap)
 	* [genetics.Genetics()](#geneticsgenetics)
+* [Funkcje](#Funkcje)
 * [Przykłady](#Przykłady)	
 	
 # Wymagane moduły zewnętrzne:
@@ -71,7 +72,21 @@ Jej parametry to:
 * ```cycles_number``` - liczba cykli krzyżowania algorytmu genetycznego
 * ```slicing_type``` (opt) - typ krzyżowania, domyślnie wartość ```genetics.SlicingType.MULTI_POINT_VISITED_EPSILON```, lub inaczej ```0```
 
-#Przykłady:
+# Funkcje:
+## ```genetics.solve()```:
+Funkcja wyznaczająca rozwiązanie problemu, każde jej zawołanie wykona zadaną w konstruktorze obiektu klasy ```genetics.Genetics()``` ilość cykli krzyżowania
+
+## ```genetics.print_best_vehicle()```:
+Funkcja wyświetlająca na konsolę parametry najlepszego osobnika (rozwiązania).  Można ją wywołać po zawołaniu funckji  ```genetics.solve()```, w przeciwnym razie zachowanie programu jest nieokreślone.
+
+## ```genetics.plot()```:
+Funkcja wyświetlająca wykresy statystyczne wykonania algorytmu. Są to:
+* Średnia wieku osobników.
+* Ilość ładowarek w rozwiązaniu najlepszego osobnika.
+* Przebieg w kilometrach najlepszego osobnika.
+* Rozwiązanie w formie grafu o pokolorowanych wierzchołkach, gdzie zielone oznaczają miasto z łądowarką.
+
+# Przykłady:
 ## Przykład 1:
 Przykładowy kod prezentuje sposób rozwiązania problemu, dla losowej, wygenerowanej przez klasę ```genetics.Genetics()``` mapy miast o 10 wierzchołkach, 20 pojazdach (osobnikach), przeprowadzająca 30 cykli, stosująca domyśle krzyżowanie wielopunktowe.
 ```python
