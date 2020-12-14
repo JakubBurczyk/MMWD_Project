@@ -15,8 +15,8 @@
 	* [Przykład 2](#przykład-2)
 # Wymagane moduły zewnętrzne:
 
-* NetworkX 2.5
-* Matplotlib 3.3.2
+* ```NetworkX 2.5```
+* ```Matplotlib 3.3.2```
 
 ```
 pip install networkx
@@ -41,9 +41,9 @@ Klasa ```genetics.SlicingType()``` jest klasą wyliczeniową (enum) pozwalając�
 
 Posiada dwie wartości:
 
-```MULTI_POINT_VISITED_EPSILON = 0``` oznacza krzyżowanie wielopunktowe, wycinające fragmenty genomu z otoczenia binarnie reprezentowanej listy odwiedzonych przez pojazd (osobnika) wierzchołków, przykładowo
+* ```MULTI_POINT_VISITED_EPSILON = 0``` oznacza krzyżowanie wielopunktowe, wycinające fragmenty genomu z otoczenia binarnie reprezentowanej listy odwiedzonych przez pojazd (osobnika) wierzchołków, przykładowo
    
-```ONE_POINT_RAND = 1``` oznacza krzyżowanie jednopunktowe z losowo wybranym punktem granicznym genomu.
+* ```ONE_POINT_RAND = 1``` oznacza krzyżowanie jednopunktowe z losowo wybranym punktem granicznym genomu.
 
 
 ## ```mapa.Map()```:
