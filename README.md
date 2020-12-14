@@ -19,7 +19,7 @@ import map
 import genetics
 ```
 
-Najważniejszą klasą, jest ```python genetics.Genetics() ```, która może funkcjonować samodzielnie:
+Najważniejszą klasą, jest ```genetics.Genetics() ```, która może funkcjonować samodzielnie:
 ```python
 genetics.Genetics(nodes, edges, mapa, vehicles_no, cycles_number, slicing_type)
 ```
@@ -29,4 +29,4 @@ Jej parametry to:
 
    UWAGA: w przypadku podania zbyt dużej lub zbyt małej wartości względem ilości wierzchołków, nastąpi autokorekta!
 
-* mapa - jeśli podano obiekt klasy ```python map.MAP()``` wartości nodesm i edges zostaną zignorowane, nie nastąpi ponowna generacja grafu, ale zostanie wyznaczone rozwiązanie dla zadanego grafu
+* mapa - jeśli podano obiekt klasy ```map.MAP()``` wartości nodesm i edges zostaną zignorowane, nie nastąpi ponowna generacja grafu, ale zostanie wyznaczone rozwiązanie dla zadanego grafu
