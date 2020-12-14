@@ -3,7 +3,7 @@
 * [Instrukcja obsługi](#INSTRUKCJA-OBSŁUGI)
    * [Moduły](##Moduły)
    * [Klasy](##Klasy)
-      * [a]
+      * [enum genetics.SlicingType()](##```enum genetics.SlicingType()```:)
 # Wymagane moduły:
 
 * NetworkX 2.5
