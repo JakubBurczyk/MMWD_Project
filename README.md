@@ -6,6 +6,9 @@
 	* [map.Map()](#mapamap)
 	* [genetics.Genetics()](#geneticsgenetics)
 * [Funkcje](#Funkcje)
+	* [genetics.solve()](#geneticssolve)
+	* [genetics.print_best_vehicle()](#geneticsprint_best_vehicle)\
+	* [genetics.plot()](#geneticsplot)
 * [Przykłady](#Przykłady)	
 	
 # Wymagane moduły zewnętrzne:
@@ -84,7 +87,7 @@ Funkcja wyświetlająca wykresy statystyczne wykonania algorytmu. Są to:
 * Średnia wieku osobników.
 * Ilość ładowarek w rozwiązaniu najlepszego osobnika.
 * Przebieg w kilometrach najlepszego osobnika.
-* Rozwiązanie w formie grafu o pokolorowanych wierzchołkach, gdzie zielone oznaczają miasto z łądowarką.
+* Rozwiązanie w formie grafu o pokolorowanych wierzchołkach, gdzie zielone oznaczają miasto z ładowarką.
 
 # Przykłady:
 ## Przykład 1:
