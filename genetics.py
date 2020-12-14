@@ -7,13 +7,16 @@ import random
 from operator import attrgetter
 from enum import Enum
 
+
 class SlicingType(Enum):
     MULTI_POINT_VISITED_EPSILON = 0
     ONE_POINT_RAND = 1
 
+
 class Genetics:
 
-    def __init__(self, nodes: int = 0, edges: int = 0, mapa: map.Map = None, vehicles_no: int = 100, cycles_number=100, slicing_type=SlicingType.MULTI_POINT_VISITED_EPSILON):
+    def __init__(self, nodes: int = 0, edges: int = 0, mapa: map.Map = None, vehicles_no: int = 100, cycles_number=100,
+                 slicing_type=SlicingType.MULTI_POINT_VISITED_EPSILON):
 
         self.avgerage_ages = []
         self.done_cycles = 0
@@ -34,6 +37,8 @@ class Genetics:
         else:
             self.mapa = mapa
 
+        self.map_solution = self.mapa
+
         self.vehicles = []
 
         for i in range(vehicles_no):
@@ -46,13 +51,16 @@ class Genetics:
         for i in range(self.cycles_number):
             self.cycle()
 
-            progress = int((i+1)/self.cycles_number*100)
-            print("\rProgress: " + str(progress) + "% " + "[" + "#" * progress + "." * (100-progress) + "]", end="")
+            progress = int((i + 1) / self.cycles_number * 100)
+            print("\rProgress: " + str(progress) + "% " + "[" + "#" * progress + "." * (100 - progress) + "]", end="")
             if i == self.cycles_number - 1:
                 print("\n")
 
         self.rank()
         self.best_vehicle = self.vehicles[0]
+        self.map_solution = self.mapa
+        for c in self.best_vehicle.chargers:
+            self.map_solution.set_as_charger(c)
 
         # self.best_vehicle.print_status()
         #
@@ -65,7 +73,7 @@ class Genetics:
         # self.show_map_solution()
 
     def cycle(self):
-        #FIXME
+        # FIXME
         self.QUICKFIX_visited_and_chargers_doubles()
         self.alzheimer()
 
@@ -84,7 +92,7 @@ class Genetics:
         self.hunger_games()
         self.crossing()
 
-        #FIXME
+        # FIXME
         self.QUICKFIX_visited_and_chargers_doubles()
 
         self.rank()
@@ -108,7 +116,7 @@ class Genetics:
             if age >= max_age:
                 return 1
             else:
-                return 1.5**(age-max_age)
+                return 1.5 ** (age - max_age)
 
         for v in self.vehicles:
             if random.uniform(0, 1) < probability(v.age, 30):
@@ -120,7 +128,6 @@ class Genetics:
                     # v.chargers = list(filter(lambda n: n != i, v.chargers))
                 # v.visited_nodes = random.sample(v.visited_nodes, int(len(v.visited_nodes) * 0.1))
                 # v.chargers = random.sample(v.chargers, int(len(v.chargers) * 0.5))
-
 
         pass
 
@@ -237,16 +244,16 @@ class Genetics:
                 if i in v.visited_nodes:
                     gene_nodes[i] = 1
                     if i >= self.slice_epsilon:
-                        for j in range(1,self.slice_epsilon+1):
+                        for j in range(1, self.slice_epsilon + 1):
                             gene_nodes[i - j] = 1
                     if i < self.mapa.size - self.slice_epsilon:
                         for j in range(1, self.slice_epsilon + 1):
                             gene_nodes[i + j] = 1
 
         elif self.slicing_type == SlicingType.ONE_POINT_RAND:
-            slice_point = random.randint(0,len(gene_nodes))
-            for i in range(0,slice_point):
-                gene_nodes[i]= 1
+            slice_point = random.randint(0, len(gene_nodes))
+            for i in range(0, slice_point):
+                gene_nodes[i] = 1
 
         return gene_nodes
 
@@ -299,11 +306,7 @@ class Genetics:
             v.visited_nodes = list(set(v.visited_nodes))
 
     def show_map_solution(self):
-        map_copy = self.mapa
-        for c in self.best_vehicle.chargers:
-            map_copy.set_as_charger(c)
-
-        map_copy.print()
+        self.map_solution.print()
 
     def print_best_vehicle(self):
         self.best_vehicle.print_status()
@@ -315,3 +318,8 @@ class Genetics:
         self.plot_visited_nodes_num_of_best()
         self.plot_nodes_to_chargers_ratios_of_best()
         self.show_map_solution()
+
+
+    def test(self):
+        pass
+
