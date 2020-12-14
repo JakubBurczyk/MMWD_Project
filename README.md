@@ -2,7 +2,7 @@
 * [Wymagane moduły zewnętrzne](#Wymagane-moduły-zewnętrzne)
 * [Moduły](#Moduły)
 * [Klasy](#Klasy)
-* [a](##<!--slicing-->)
+* [genetics.SlicingType()](##enum-genetics.SlicingType())
 
 # Wymagane moduły zewnętrzne:
 
@@ -24,9 +24,9 @@ import map
 import genetics
 ```
 # Klasy:
-##<!-- slicing -->
-## ```enum genetics.SlicingType()```:
-Klasa genetics.SlicingType jest klasą wyliczeniową (enum) pozwalającą na zmianę sposobu krzyżowania osobników populacji.
+
+## enum genetics.SlicingType():
+Klasa ```genetics.SlicingType()``` jest klasą wyliczeniową (enum) pozwalającą na zmianę sposobu krzyżowania osobników populacji.
 
 Posiada dwie wartości:
 
