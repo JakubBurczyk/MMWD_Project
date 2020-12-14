@@ -10,7 +10,7 @@ pip install matplotlib
 
 USER MANUAL:
 
-Do wyznaczenia rozwiązania potrzebne są 2 moduły:
+Do wyznaczenia rozwiązania problemu potrzebne są 2 moduły:
 * map
 * genetics
 
@@ -18,3 +18,12 @@ Do wyznaczenia rozwiązania potrzebne są 2 moduły:
 import map
 import genetics
 ```
+
+Najważniejszą klasą, jest genetics.Genetics(), która może funkcjonować samodzielnie:
+```python
+genetics.Genetics(nodes, edges, mapa, vehicles_no, cycles_number, slicing_type)
+```
+Jej parametry to:
+* nodes - ilość wierzchołków generowanego w sposób losowy grafu ważonego przedstawiającego połączone miasta.
+* edges - ilość dróg łączących miasta
+⋅⋅* UWAGA: w przypadku podania zbyt dużej lub zbyt małej wartości względem ilości wierzchołków, nastąpi autokorekta!
