@@ -9,8 +9,9 @@
 	* [genetics.solve()](#geneticssolve)
 	* [genetics.print_best_vehicle()](#geneticsprint_best_vehicle)
 	* [genetics.plot()](#geneticsplot)
-* [Przykłady](#Przykłady)	
-	
+* [Przykłady](#Przykłady)
+	* [1](#przykład-1)
+	* [2](#przykład-2)
 # Wymagane moduły zewnętrzne:
 
 * NetworkX 2.5
