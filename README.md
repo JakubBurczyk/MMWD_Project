@@ -5,6 +5,8 @@
 	* [enum genetics.SlicingType()](#enum-geneticsslicingtype)
 	* [map.Map()](#mapamap)
 	* [genetics.Genetics()](#geneticsgenetics)
+* [Przykłady](#Przykłady)	
+	
 # Wymagane moduły zewnętrzne:
 
 * NetworkX 2.5
@@ -68,3 +70,14 @@ Jej parametry to:
 * ```vehicles_no``` - liczba osobników populacji
 * ```cycles_number``` - liczba cykli krzyżowania algorytmu genetycznego
 * ```slicing_type``` (opt) - typ krzyżowania, domyślnie wartość ```genetics.SlicingType.MULTI_POINT_VISITED_EPSILON```, lub inaczej ```0```
+
+#Przykłady:
+## Przykład 1:
+Przykładowy kod prezentuje sposób rozwiązania problemu, dla losowej, wygenerowanej przez klasę ```genetics.Genetics()``` mapy miast:
+```python
+import map
+import genetics
+
+
+
+```
