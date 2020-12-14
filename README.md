@@ -6,7 +6,7 @@
 	* [map.Map()](#mapamap)
 	* [genetics.Genetics()](#geneticsgenetics)
 * [Funkcje](#Funkcje)
-	* [map.print()][#mapprint]
+	* [map.print()](#mapprint)
 	* [genetics.solve()](#geneticssolve)
 	* [genetics.print_best_vehicle()](#geneticsprint_best_vehicle)
 	* [genetics.plot()](#geneticsplot)
