@@ -25,9 +25,9 @@ pip install matplotlib
 
 # Moduły:
 Do wyznaczenia rozwiązania problemu potrzebne są 3 moduły:
-* map.py
-* genetics.py
-* vehicle.py
+* ```map.py```
+* ```genetics.py```
+* ```vehicle.py```
 
 Moduł ```vehicle.py``` jest wymagany w folderze roboczym, ale nie musi być importowanym przez użytkownika.
 ```python
