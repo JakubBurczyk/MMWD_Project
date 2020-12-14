@@ -6,6 +6,7 @@
 	* [map.Map()](#mapamap)
 	* [genetics.Genetics()](#geneticsgenetics)
 * [Funkcje](#Funkcje)
+	* [map.print()][#mapprint]
 	* [genetics.solve()](#geneticssolve)
 	* [genetics.print_best_vehicle()](#geneticsprint_best_vehicle)
 	* [genetics.plot()](#geneticsplot)
@@ -77,6 +78,9 @@ Jej parametry to:
 * ```slicing_type``` (opt) - typ krzyżowania, domyślnie wartość ```genetics.SlicingType.MULTI_POINT_VISITED_EPSILON```, lub inaczej ```0```
 
 # Funkcje:
+## ```map.print()```:
+Funkcja wyświetlająca mapę w postaci grafu na wykresie.
+
 ## ```genetics.solve()```:
 Funkcja wyznaczająca rozwiązanie problemu, każde jej zawołanie wykona zadaną w konstruktorze obiektu klasy ```genetics.Genetics()``` ilość cykli krzyżowania
 
