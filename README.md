@@ -7,7 +7,7 @@
 	* [genetics.Genetics()](#geneticsgenetics)
 * [Funkcje](#Funkcje)
 	* [genetics.solve()](#geneticssolve)
-	* [genetics.print_best_vehicle()](#geneticsprint_best_vehicle)\
+	* [genetics.print_best_vehicle()](#geneticsprint_best_vehicle)
 	* [genetics.plot()](#geneticsplot)
 * [Przykłady](#Przykłady)	
 	
