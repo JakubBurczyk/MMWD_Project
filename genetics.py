@@ -357,12 +357,13 @@ class Genetics:
         self.available_paths = []
 
         start_node, stop_node = random.sample(range(0, self.map_solution.size - 1), 2)
-
+        print("Checking for available paths...")
         self.check_available_paths(start_node, stop_node)
+        print("Paths found! Beginning test...")
         for path in self.available_paths:
             veh_checker = vehicle.Vehicle(self.mapa)
             veh_checker.start_node = path[0]
-            veh_checker.current_node= path[0]
+            veh_checker.current_node = path[0]
 
             for i in range(1, len(path)):
 
@@ -376,15 +377,16 @@ class Genetics:
         return False
 
     def test(self):
-        print("-------------BEGINNING TESTS-------------")
+        print("-------------BEGINNING TESTS-------------", "\n\n")
+
         result = 0
         for i in range(self.tests_number):
+            print("-------------Test number", i + 1," -------------")
             result = result + self.test_iterate()
             if result:
                 print("test number ", i + 1, ": ACCEPTED")
             else:
                 print("test number ", i + 1, ": REJECTED")
-
 
         print(result, " out of ", self.tests_number, "= ", 100 * result / self.tests_number, "% passed")
         print("-----------------------------------------")
