@@ -6,7 +6,7 @@ import vehicle
 import random
 from operator import attrgetter
 from enum import Enum
-
+import copy
 
 class SlicingType(Enum):
     MULTI_POINT_VISITED_EPSILON = 0
@@ -36,7 +36,7 @@ class Genetics:
         if mapa is None:
             self.mapa = map.Map(nodes, edges, as_complete=False, tries=10000)
         else:
-            self.mapa = mapa
+            self.mapa = copy.deepcopy(mapa)
 
         self.map_solution = self.mapa
         self.map_binary = None
