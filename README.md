@@ -18,10 +18,11 @@
 
 * ```NetworkX 2.5```
 * ```Matplotlib 3.3.2```
-
+* ```termcolor```
 ```
 pip install networkx
 pip install matplotlib
+pip install termcolor
 ```
 
 # Moduły:
@@ -98,8 +99,11 @@ Funkcja wyświetlająca wykresy statystyczne wykonania algorytmu. Są to:
 * Przebieg w kilometrach najlepszego osobnika.
 * Rozwiązanie w formie grafu o pokolorowanych wierzchołkach, gdzie zielone oznaczają miasto z ładowarką.
 
-## ```genetics.test()```:
-Funkcja przeprowadzająca testy polegające na dobraniu pary wierzchołków- startowego i końcowego, wyznaczająca wszystkie możliwe ścieżki pomiędzy nimi, a następnie szukająca ścieżki przez którą teoretyczny pojazd mógłby pokonać. Jeśli takowa istnieje- test jest zaliczany. Liczba testów jest zależna od zmiennej ```tests_no``` w klasie ```denetics.Genetics()```. Funkcja dodatkowo wyświetla postęp testowania oraz finalne rezultaty.
+## ```genetics.test(tests_number)```:
+Funkcja przeprowadzająca testy polegające na dobraniu pary wierzchołków- startowego i końcowego, wyznaczająca wszystkie możliwe ścieżki pomiędzy nimi, a następnie szukająca ścieżki przez którą teoretyczny pojazd mógłby pokonać. Jeśli takowa istnieje- test jest zaliczany.
+
+Jej parametry to:
+* ```tests_number``` - liczba testów do przeprowadzenia
 
 # Przykłady:
 ## Przykład 1:
