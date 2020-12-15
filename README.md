@@ -149,13 +149,17 @@ attempts = 2
 mapa = map.Map(size=100)
 mapa.print()
 
-gen = [genetics.Genetics(mapa=mapa, vehicles_no=vehicles_number, cycles_number=cycles, slicing_type=genetics.SlicingType.MULTI_POINT_VISITED_EPSILON)] * attempts
+# TWORZENIE INSTANCJI ALGORYTMU
+for i in range(attempts):
+    gen.append(genetics.Genetics(mapa=mapa, vehicles_no=vehicles_number, cycles_number=cycles,slicing_type=genetics.SlicingType.MULTI_POINT_VISITED_EPSILON))
 
+# ROZWIAZANIE I OUTPUT
 for i in range(attempts):
     gen[i].solve()
     gen[i].print_best_vehicle()
     gen[i].plot()
-    
+
+# TESTY
 for i in range(attempts):
     gen[i].test(tests_number)
 ```
