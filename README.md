@@ -10,6 +10,7 @@
 	* [genetics.solve()](#geneticssolve)
 	* [genetics.print_best_vehicle()](#geneticsprint_best_vehicle)
 	* [genetics.plot()](#geneticsplot)
+	* [genetics.test()](#geneticstest)
 * [Przykłady](#Przykłady)
 	* [Przykład 1](#przykład-1)
 	* [Przykład 2](#przykład-2)
@@ -77,6 +78,7 @@ Jej parametry to:
 
 * ```vehicles_no``` - liczba osobników populacji
 * ```cycles_number``` - liczba cykli krzyżowania algorytmu genetycznego
+* ```tests_no``` - liczba wykonywanych testów
 * ```slicing_type``` (opt) - typ krzyżowania, domyślnie wartość ```genetics.SlicingType.MULTI_POINT_VISITED_EPSILON```, lub inaczej ```0```
 
 # Funkcje:
@@ -95,6 +97,9 @@ Funkcja wyświetlająca wykresy statystyczne wykonania algorytmu. Są to:
 * Ilość ładowarek w rozwiązaniu najlepszego osobnika.
 * Przebieg w kilometrach najlepszego osobnika.
 * Rozwiązanie w formie grafu o pokolorowanych wierzchołkach, gdzie zielone oznaczają miasto z ładowarką.
+
+## ```genetics.test()```:
+Funkcja przeprowadzająca testy polegające na dobraniu pary wierzchołków- startowego i końcowego, wyznaczająca wszystkie możliwe ścieżki pomiędzy nimi, a następnie szukająca ścieżki przez którą teoretyczny pojazd mógłby pokonać. Jeśli takowa istnieje- test jest zaliczany. Liczba testów jest zależna od zmiennej ```tests_no``` w klasie ```denetics.Genetics()```. Funkcja dodatkowo wyświetla postęp testowania oraz finalne rezultaty.
 
 # Przykłady:
 ## Przykład 1:
