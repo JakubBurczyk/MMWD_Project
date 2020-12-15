@@ -9,7 +9,7 @@ class Map:
     is_charger = 'is_charger'
     weight = 'weight'
 
-    min_weight = 6
+    min_weight = 2
     max_weight = 8
 
     charger_energy = 600

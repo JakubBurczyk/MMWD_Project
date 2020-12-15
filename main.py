@@ -4,9 +4,9 @@ import genetics
 vehicles_number = 100
 cycles = 100
 attempts = 2
-tests_number = 10
+tests_number = 3
 
-mapa = map.Map(size=10)
+mapa = map.Map(size=20)
 mapa.print()
 
 gen = [genetics.Genetics(mapa=mapa, vehicles_no=vehicles_number, cycles_number=cycles, tests_no=tests_number,
