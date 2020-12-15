@@ -16,7 +16,7 @@ class SlicingType(Enum):
 class Genetics:
 
     def __init__(self, nodes: int = 0, edges: int = 0, mapa: map.Map = None, vehicles_no: int = 100, cycles_number=100,
-                 tests_no=2,
+
                  slicing_type=SlicingType.MULTI_POINT_VISITED_EPSILON):
 
         self.avgerage_ages = []
@@ -41,7 +41,7 @@ class Genetics:
         self.map_solution = self.mapa
         self.map_binary = None
         self.vehicles = []
-        self.tests_number = tests_no
+
 
         for i in range(vehicles_no):
             self.vehicles.append(vehicle.Vehicle(self.mapa))
@@ -383,11 +383,11 @@ class Genetics:
 
         return False
 
-    def test(self):
+    def test(self,tests_number=3):
         print(colored("\n\n-------------BEGINNING TESTS-------------\n", 'green'))
 
         final_result = 0
-        for i in range(self.tests_number):
+        for i in range(tests_number):
             print(colored("-------------Test number", 'yellow'), colored(i + 1,'blue'), colored("--------------",'yellow'))
             result = self.test_iterate()
             if result:
@@ -397,7 +397,7 @@ class Genetics:
                 print("test number", i + 1, ":",colored("REJECTED",'red'))
         print("\n")
         print(colored("-----------------RESULTS-----------------", 'red'))
-        print(colored(final_result, 'red'), colored("out of", 'red'), colored(self.tests_number, 'red'),
-              colored("=", 'red'), colored(100 * final_result / self.tests_number, 'blue'), colored("%", 'blue'),
+        print(colored(final_result, 'red'), colored("out of", 'red'), colored(tests_number, 'red'),
+              colored("=", 'red'), colored(100 * final_result / tests_number, 'blue'), colored("%", 'blue'),
               colored("passed", 'red'))
         print(colored("-----------------------------------------", 'red'))
