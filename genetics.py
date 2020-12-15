@@ -1,5 +1,5 @@
 from typing import List
-
+from termcolor import colored
 import matplotlib.pyplot as plt
 import map
 import vehicle
@@ -359,7 +359,7 @@ class Genetics:
         start_node, stop_node = random.sample(range(0, self.map_solution.size - 1), 2)
         print("Checking for available paths...")
         self.check_available_paths(start_node, stop_node)
-        print("Paths found! Beginning test...")
+        print("Paths found! Starting test...")
         for path in self.available_paths:
             veh_checker = vehicle.Vehicle(self.mapa)
             veh_checker.start_node = path[0]
@@ -377,16 +377,19 @@ class Genetics:
         return False
 
     def test(self):
-        print("-------------BEGINNING TESTS-------------", "\n\n")
+        print(colored("\n\n-------------BEGINNING TESTS-------------\n", 'green'))
 
         result = 0
         for i in range(self.tests_number):
-            print("-------------Test number", i + 1," -------------")
+            print(colored("-------------Test number", 'yellow'), colored(i + 1,'blue'), colored("--------------",'yellow'))
             result = result + self.test_iterate()
             if result:
-                print("test number ", i + 1, ": ACCEPTED")
+                print("test number", i + 1, ":",colored("ACCEPTED",'green'))
             else:
-                print("test number ", i + 1, ": REJECTED")
-
-        print(result, " out of ", self.tests_number, "= ", 100 * result / self.tests_number, "% passed")
-        print("-----------------------------------------")
+                print("test number", i + 1, ":",colored("REJECTED",'red'))
+        print("\n")
+        print(colored("-----------------RESULTS-----------------", 'red'))
+        print(colored(result, 'red'), colored("out of", 'red'), colored(self.tests_number, 'red'),
+              colored("=", 'red'), colored(100 * result / self.tests_number, 'blue'), colored("%", 'blue'),
+              colored("passed", 'red'))
+        print(colored("-----------------------------------------", 'red'))
