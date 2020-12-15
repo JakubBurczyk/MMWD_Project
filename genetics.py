@@ -16,6 +16,7 @@ class SlicingType(Enum):
 class Genetics:
 
     def __init__(self, nodes: int = 0, edges: int = 0, mapa: map.Map = None, vehicles_no: int = 100, cycles_number=100,
+                 tests_no=2,
                  slicing_type=SlicingType.MULTI_POINT_VISITED_EPSILON):
 
         self.avgerage_ages = []
@@ -38,8 +39,9 @@ class Genetics:
             self.mapa = mapa
 
         self.map_solution = self.mapa
-
+        self.map_binary = None
         self.vehicles = []
+        self.tests_number = tests_no
 
         for i in range(vehicles_no):
             self.vehicles.append(vehicle.Vehicle(self.mapa))
@@ -61,6 +63,8 @@ class Genetics:
         self.map_solution = self.mapa
         for c in self.best_vehicle.chargers:
             self.map_solution.set_as_charger(c)
+
+        self.map_conversion()
 
         # self.best_vehicle.print_status()
         #
@@ -319,7 +323,68 @@ class Genetics:
         self.plot_nodes_to_chargers_ratios_of_best()
         self.show_map_solution()
 
+    def map_conversion(self):
+        self.map_binary = list()
+        binary = [list()] * self.map_solution.size
+        for i in range(self.map_solution.size):
+            binary[i] = [0] * self.map_solution.size
+
+        for edge in self.map_solution.G.edges:
+            binary[edge[0]][edge[1]] = 1
+            binary[edge[1]][edge[0]] = 1
+
+        for i in range(self.map_solution.size):
+            list_to_append = []
+            for j in range(self.map_solution.size):
+                if binary[i][j]:
+                    list_to_append.append(j)
+            if list_to_append:
+                self.map_binary.append(list_to_append)
+            else:
+                self.map_binary.append(None)
+
+    def check_available_paths(self, current_node, stop_node, visited_nodes=[]):
+        copyofvisited = visited_nodes.copy()
+        copyofvisited.append(current_node)
+        if current_node == stop_node:
+            self.available_paths.append(copyofvisited)
+        else:
+            for neighbor in self.map_binary[current_node]:
+                if neighbor not in copyofvisited:
+                    self.check_available_paths(neighbor, stop_node, copyofvisited)
+
+    def test_iterate(self):
+        self.available_paths = []
+
+        start_node, stop_node = random.sample(range(0, self.map_solution.size - 1), 2)
+
+        self.check_available_paths(start_node, stop_node)
+        for path in self.available_paths:
+            veh_checker = vehicle.Vehicle(self.mapa)
+            veh_checker.start_node = path[0]
+            veh_checker.current_node= path[0]
+
+            for i in range(1, len(path)):
+
+                if veh_checker.can_move_to(path[i]):
+                    if path[i] == stop_node:
+                        return True
+                    veh_checker.move(path[i])
+                else:
+                    break
+
+        return False
 
     def test(self):
-        pass
+        print("-------------BEGINNING TESTS-------------")
+        result = 0
+        for i in range(self.tests_number):
+            result = result + self.test_iterate()
+            if result:
+                print("test number ", i + 1, ": ACCEPTED")
+            else:
+                print("test number ", i + 1, ": REJECTED")
 
+
+        print(result, " out of ", self.tests_number, "= ", 100 * result / self.tests_number, "% passed")
+        print("-----------------------------------------")

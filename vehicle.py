@@ -72,6 +72,7 @@ class Vehicle:
         self.battery = self.battery - distance / self.km_per_unit_energy
 
     def can_move_to(self, destination) -> bool:
+
         return self.calculate_range() >= self.map.get_distance_between(self.current_node, destination)
 
     def move(self, destination) -> bool:
