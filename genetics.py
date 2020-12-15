@@ -286,25 +286,33 @@ class Genetics:
     def plot_charger_nums_of_best(self):
         cycles = [i for i in range(1, self.done_cycles + 1)]
         plt.plot(cycles, self.charger_nums_of_best)
-        plt.title("Number of chargers")
+        plt.title("Ilość ładowarek w genomie najlepszego osobnika")
+        plt.xlabel("Cykl")
+        plt.ylabel("Wiek (cykle)")
         plt.show()
 
     def plot_kilometrages_of_best(self):
         cycles = [i for i in range(1, self.done_cycles + 1)]
         plt.plot(cycles, self.kilometrages_of_best)
-        plt.title("Top kilometrage")
+        plt.title("Przebieg najlepszego osobnika")
+        plt.xlabel("Cykl")
+        plt.ylabel("Wiek (cykle)")
         plt.show()
 
     def plot_visited_nodes_num_of_best(self):
         cycles = [i for i in range(1, self.done_cycles + 1)]
         plt.plot(cycles, self.visited_nodes_num_of_best)
-        plt.title("Top vis nodes num")
+        plt.title("Ilość odwiedzonych wierzchołków najlepszego osobnika")
+        plt.xlabel("Cykl")
+        plt.ylabel("Wiek (cykle)")
         plt.show()
 
     def plot_nodes_to_chargers_ratios_of_best(self):
         cycles = [i for i in range(1, self.done_cycles + 1)]
         plt.plot(cycles, self.nodes_to_chargers_ratios_of_best)
-        plt.title("Top ratio")
+        plt.title("Stosunek ilości ładowarek do odwiedzonych wierzchołków najlepszego osobnika")
+        plt.xlabel("Cykl")
+        plt.ylabel("Wiek (cykle)")
         plt.show()
 
     def QUICKFIX_visited_and_chargers_doubles(self):
