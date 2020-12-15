@@ -137,7 +137,7 @@ Age:  23
 
 ```
 ## Przykład 2:
-Przykładowy kod badający dwukrotne podejście do rozwiązania problemu dla takiej samej mapy (grafu).
+Przykładowy kod badający dwukrotne podejście do rozwiązania problemu dla takiej samej mapy (grafu), a następnie przeprowadzający testy:
 ```python
 import map
 import genetics
@@ -155,4 +155,7 @@ for i in range(attempts):
     gen[i].solve()
     gen[i].print_best_vehicle()
     gen[i].plot()
+    
+for i in range(attempts):
+    gen[i].test(tests_number)
 ```
