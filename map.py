@@ -9,7 +9,7 @@ class Map:
     is_charger = 'is_charger'
     weight = 'weight'
 
-    min_weight = 2
+    min_weight = 6
     max_weight = 8
 
     charger_energy = 600
@@ -20,6 +20,7 @@ class Map:
 
         self.edg_number = edg
         self.size = size
+        self.chargers = []
 
         if as_complete:
             self.G = nx.complete_graph(size)
@@ -162,6 +163,7 @@ class Map:
         if node_num in self.G.nodes:
             t = self.G.nodes(data=True)[node_num]
             self.G.nodes(data=True)[node_num][self.is_charger] = True
+            self.chargers.append(node_num)
 
     def get_distance_between(self, n1, n2) -> float:
         if (n1, n2) in self.G.edges:

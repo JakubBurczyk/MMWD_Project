@@ -176,8 +176,11 @@ class Genetics:
     def rank(self):
         for v in self.vehicles:
             v.visited_nodes_num = len(v.visited_nodes)
+            if v.visited_nodes_num==0:
+                v.nodes_to_chargers_ratio=1
+            else:
             # v.nodes_to_chargers_ratio = v.visited_nodes_num/len(v.chargers)
-            v.nodes_to_chargers_ratio = len(v.chargers) / v.visited_nodes_num
+                v.nodes_to_chargers_ratio = len(v.chargers) / v.visited_nodes_num
 
         # self.vehicles.sort(key=attrgetter('kilometrage'), reverse=True)
         # self.vehicles.sort(key=attrgetter('visited_nodes_num'), reverse=True)
@@ -364,13 +367,17 @@ class Genetics:
             veh_checker = vehicle.Vehicle(self.mapa)
             veh_checker.start_node = path[0]
             veh_checker.current_node = path[0]
+            veh_checker.chargers=self.map_solution.chargers
+
 
             for i in range(1, len(path)):
-
+                if veh_checker.current_node in veh_checker.chargers:
+                    veh_checker.charge()
                 if veh_checker.can_move_to(path[i]):
                     if path[i] == stop_node:
                         return True
                     veh_checker.move(path[i])
+
                 else:
                     break
 
@@ -379,17 +386,18 @@ class Genetics:
     def test(self):
         print(colored("\n\n-------------BEGINNING TESTS-------------\n", 'green'))
 
-        result = 0
+        final_result = 0
         for i in range(self.tests_number):
             print(colored("-------------Test number", 'yellow'), colored(i + 1,'blue'), colored("--------------",'yellow'))
-            result = result + self.test_iterate()
+            result = self.test_iterate()
             if result:
                 print("test number", i + 1, ":",colored("ACCEPTED",'green'))
+                final_result+=1
             else:
                 print("test number", i + 1, ":",colored("REJECTED",'red'))
         print("\n")
         print(colored("-----------------RESULTS-----------------", 'red'))
-        print(colored(result, 'red'), colored("out of", 'red'), colored(self.tests_number, 'red'),
-              colored("=", 'red'), colored(100 * result / self.tests_number, 'blue'), colored("%", 'blue'),
+        print(colored(final_result, 'red'), colored("out of", 'red'), colored(self.tests_number, 'red'),
+              colored("=", 'red'), colored(100 * final_result / self.tests_number, 'blue'), colored("%", 'blue'),
               colored("passed", 'red'))
         print(colored("-----------------------------------------", 'red'))
