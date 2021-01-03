@@ -43,9 +43,9 @@ Klasa ```genetics.SlicingType()``` jest klasą wyliczeniową (enum) pozwalając�
 
 Posiada dwie wartości:
 
-* ```MULTI_POINT_VISITED_EPSILON = 0``` oznacza krzyżowanie wielopunktowe, wycinające fragmenty genomu z otoczenia binarnie reprezentowanej listy odwiedzonych przez pojazd (osobnika) wierzchołków, przykładowo
+* ```MULTI_POINT_VISITED_EPSILON = 0``` oznacza krzyżowanie wielopunktowe, wycinające fragmenty genomu z otoczenia binarnie reprezentowanej listy odwiedzonych przez pojazd (osobnika) wierzchołków.
    
-* ```ONE_POINT_RAND = 1``` oznacza krzyżowanie jednopunktowe z losowo wybranym punktem granicznym genomu.
+* ```ONE_POINT_RAND = 1``` oznacza krzyżowanie jednopunktowe z losowo wybranym punktem granicznym genotypu.
 
 
 ## ```mapa.Map()```:
