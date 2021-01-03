@@ -151,7 +151,8 @@ mapa.print()
 
 # TWORZENIE INSTANCJI ALGORYTMU
 for i in range(attempts):
-    gen.append(genetics.Genetics(mapa=mapa, vehicles_no=vehicles_number, cycles_number=cycles,slicing_type=genetics.SlicingType.MULTI_POINT_VISITED_EPSILON))
+    gen.append(genetics.Genetics(mapa=mapa, vehicles_no=vehicles_number, 
+    	cycles_number=cycles,slicing_type=genetics.SlicingType.MULTI_POINT_VISITED_EPSILON))
 
 # ROZWIAZANIE I OUTPUT
 for i in range(attempts):
