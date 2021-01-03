@@ -54,7 +54,7 @@ class Genetics:
             self.cycle()
 
             progress = int((i + 1) / self.cycles_number * 100)
-            print("\rProgress: " + str(progress) + "% " + "[" + "#" * progress + "." * (100 - progress) + "]", end="")
+            print("\rProgress: " + colored(str(progress) + "% ",'blue') + "[" + colored("#" * progress, 'green') + colored("." * (100 - progress),'red') + "]", end="")
             if i == self.cycles_number - 1:
                 print("\n")
 

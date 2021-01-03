@@ -83,3 +83,6 @@ class Vehicle:
             self.current_node = destination
             self.kilometrage += distance
         return can_move
+
+    def get_ratio(self):
+        return len(self.chargers)/len(self.visited_nodes)
