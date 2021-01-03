@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 
 vehicles_number = 100
 cycles = 100
-attempts = 10
+attempts = 1
 tests_number = 1
 
 mapa = map.Map(size=50)
@@ -52,7 +52,6 @@ plt.title("Czasy wykonania prób")
 plt.ylabel("Czas [s]")
 plt.xlabel("Próba")
 plt.show()
-
 
 
 # for i in range(attempts):
