@@ -4,11 +4,11 @@ import time
 import matplotlib.pyplot as plt
 
 vehicles_number = 100
-cycles = 100
+cycles = 200
 attempts = 1
 tests_number = 1
 
-mapa = map.Map(size=50)
+mapa = map.Map(size=100)
 mapa.print()
 
 gen_vis_chargers_ratio = []
@@ -30,8 +30,8 @@ for i in range(attempts):
 
     gen_vis_nodes_ratio.append(gen[i].get_vis_to_nodes_ratio())
     gen_vis_chargers_ratio.append(gen[i].best_vehicle.get_ratio())
-    # gen[i].print_best_vehicle()
-    # gen[i].plot()
+    gen[i].print_best_vehicle()
+    gen[i].plot()
 
 
 plt.scatter(gen_try, gen_vis_chargers_ratio)
