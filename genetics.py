@@ -413,5 +413,8 @@ class Genetics:
               colored("passed", 'red'))
         print(colored("-----------------------------------------", 'red'))
 
-    def get_vis_to_nodes_ratio(self):
+    def get_vis_to_size_ratio(self):
         return len(self.best_vehicle.visited_nodes) / self.mapa.size
+
+    def get_chargers_to_size_ratio(self):
+        return len(self.best_vehicle.chargers) / self.mapa.size
