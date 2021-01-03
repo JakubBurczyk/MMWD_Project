@@ -7,6 +7,7 @@ import random
 from operator import attrgetter
 from enum import Enum
 import copy
+import time
 
 class SlicingType(Enum):
     MULTI_POINT_VISITED_EPSILON = 0
@@ -50,13 +51,15 @@ class Genetics:
             self.vehicles.append(vehicle.Vehicle(self.mapa))
 
     def solve(self):
+        start = time.time()
         for i in range(self.cycles_number):
             self.cycle()
 
             progress = int((i + 1) / self.cycles_number * 100)
-            print("\rProgress: " + colored(str(progress) + "% ",'blue') + "[" + colored("#" * progress, 'green') + colored("." * (100 - progress),'red') + "]", end="")
+            print("\rProgress: " + colored(str(progress) + "% ",'blue') + "[" + colored("#" * progress, 'green') + colored("." * (100 - progress),'red') + "] "
+                  + colored(format(time.time()-start,'.1f'), 'blue') + " seconds elapsed", end="")
             if i == self.cycles_number - 1:
-                print("\n")
+                print("")
 
         self.rank()
         self.best_vehicle = self.vehicles[0]
@@ -409,3 +412,6 @@ class Genetics:
               colored("=", 'red'), colored(100 * final_result / tests_number, 'blue'), colored("%", 'blue'),
               colored("passed", 'red'))
         print(colored("-----------------------------------------", 'red'))
+
+    def get_vis_to_nodes_ratio(self):
+        return len(self.best_vehicle.visited_nodes) / self.mapa.size

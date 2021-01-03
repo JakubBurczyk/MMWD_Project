@@ -8,10 +8,11 @@ cycles = 100
 attempts = 10
 tests_number = 1
 
-mapa = map.Map(size=10)
+mapa = map.Map(size=50)
 mapa.print()
 
-gen_ratio = []
+gen_vis_chargers_ratio = []
+gen_vis_nodes_ratio = []
 gen_time = []
 gen_try = []
 gen = []
@@ -27,14 +28,21 @@ for i in range(attempts):
     gen[i].solve()
     gen_time.append(time.time()-start)
 
-    gen_ratio.append(gen[i].best_vehicle.get_ratio())
+    gen_vis_nodes_ratio.append(gen[i].get_vis_to_nodes_ratio())
+    gen_vis_chargers_ratio.append(gen[i].best_vehicle.get_ratio())
     # gen[i].print_best_vehicle()
     # gen[i].plot()
 
 
-plt.scatter(gen_try, gen_ratio)
+plt.scatter(gen_try, gen_vis_chargers_ratio)
 plt.xticks(gen_try)
 plt.title("Stosunek ładowarki/odwiedzone wierzchołki w poszczególnych próbach")
+plt.xlabel("Próba")
+plt.show()
+
+plt.scatter(gen_try, gen_vis_nodes_ratio)
+plt.xticks(gen_try)
+plt.title("Stosunek odwiedzone wierzchołki/rozmiar mapy w poszczególnych próbach")
 plt.xlabel("Próba")
 plt.show()
 
