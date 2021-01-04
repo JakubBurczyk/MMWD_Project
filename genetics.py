@@ -291,7 +291,7 @@ class Genetics:
         plt.plot(cycles, self.charger_nums_of_best)
         plt.title("Ilość ładowarek w genomie najlepszego osobnika")
         plt.xlabel("Cykl")
-        plt.ylabel("Wiek (cykle)")
+        plt.ylabel("Ilość ładowarek")
         plt.show()
 
     def plot_kilometrages_of_best(self):
@@ -299,7 +299,7 @@ class Genetics:
         plt.plot(cycles, self.kilometrages_of_best)
         plt.title("Przebieg najlepszego osobnika")
         plt.xlabel("Cykl")
-        plt.ylabel("Wiek (cykle)")
+        plt.ylabel("Przebieg [km]")
         plt.show()
 
     def plot_visited_nodes_num_of_best(self):
@@ -307,7 +307,7 @@ class Genetics:
         plt.plot(cycles, self.visited_nodes_num_of_best)
         plt.title("Ilość odwiedzonych wierzchołków najlepszego osobnika")
         plt.xlabel("Cykl")
-        plt.ylabel("Wiek (cykle)")
+        plt.ylabel("Odwiedzone wierzchołki")
         plt.show()
 
     def plot_nodes_to_chargers_ratios_of_best(self):
@@ -315,7 +315,7 @@ class Genetics:
         plt.plot(cycles, self.nodes_to_chargers_ratios_of_best)
         plt.title("Stosunek ilości ładowarek do odwiedzonych wierzchołków najlepszego osobnika")
         plt.xlabel("Cykl")
-        plt.ylabel("Wiek (cykle)")
+        plt.ylabel("Ładowarki/odwiedzone wierzchołki")
         plt.show()
 
     def QUICKFIX_visited_and_chargers_doubles(self):
@@ -324,7 +324,7 @@ class Genetics:
             v.visited_nodes = list(set(v.visited_nodes))
 
     def show_map_solution(self):
-        self.map_solution.print()
+        self.map_solution.print(len(self.vehicles),self.cycles_number)
 
     def print_best_vehicle(self):
         self.best_vehicle.print_status()
