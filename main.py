@@ -10,7 +10,7 @@ attempts = 1
 tests_number = 1
 
 mapa = map.Map(size=100)
-mapa.print()
+mapa.print(vehicles_number=100, cycles=200)
 
 gen_vis_chargers_ratio = []
 gen_vis_size_ratio = []
@@ -35,7 +35,7 @@ for i in range(attempts):
     gen_vis_size_ratio.append(gen[i].get_vis_to_size_ratio())
     gen_vis_chargers_ratio.append(gen[i].best_vehicle.get_ratio())
     gen[i].print_best_vehicle()
-    #gen[i].plot()
+    # gen[i].plot()
 
 plt.scatter(gen_try, gen_vis_chargers_ratio)
 plt.xticks(gen_try)

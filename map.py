@@ -123,7 +123,7 @@ class Map:
         print("ERROR CREATING MAP")
         return None
 
-    def print(self, edge_filter=0):
+    def print(self, vehicles_number, cycles, edge_filter=0):
         if edge_filter < self.min_weight:
             edge_filter = self.min_weight
 
@@ -146,7 +146,8 @@ class Map:
 
         # labels
         nx.draw_networkx_labels(self.G, pos, font_size=10, font_family="sans-serif")
-        plt.title("Wygenerowana mapa o rozmiarze: " + str(self.size))
+        plt.title("Wygenerowana mapa\nRozmiar: " + str(self.size) + "\nLiczebność populacji: " + str(vehicles_number)
+                  + "\nLiczba cykli: " + str(cycles))
         plt.axis("off")
         plt.show()
 
