@@ -146,8 +146,8 @@ class Map:
 
         # labels
         nx.draw_networkx_labels(self.G, pos, font_size=10, font_family="sans-serif")
-
-        plt.axis("on")
+        plt.title("Wygenerowana mapa o rozmiarze: " + str(self.size))
+        plt.axis("off")
         plt.show()
 
     def count_chargers(self) -> int:
