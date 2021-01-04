@@ -4,13 +4,13 @@ import time
 import matplotlib.pyplot as plt
 from statistics import mean
 
-vehicles_number = 100
-cycles = 200
-attempts = 1
-tests_number = 1
+vehicles_number = 50
+cycles = 100
+attempts = 10
+tests_number = 3
 
-mapa = map.Map(size=100)
-mapa.print(vehicles_number=100, cycles=200)
+mapa = map.Map(size=50)
+mapa.print()
 
 gen_vis_chargers_ratio = []
 gen_vis_size_ratio = []
