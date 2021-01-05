@@ -324,7 +324,7 @@ class Genetics:
             v.visited_nodes = list(set(v.visited_nodes))
 
     def show_map_solution(self):
-        self.map_solution.print(len(self.vehicles),self.cycles_number)
+        self.map_solution.print()
 
     def print_best_vehicle(self):
         self.best_vehicle.print_status()

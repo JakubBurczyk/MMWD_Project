@@ -6,7 +6,7 @@ from statistics import mean
 
 vehicles_number = 50
 cycles = 100
-attempts = 10
+attempts = 3
 tests_number = 3
 
 mapa = map.Map(size=50)
@@ -36,6 +36,8 @@ for i in range(attempts):
     gen_vis_chargers_ratio.append(gen[i].best_vehicle.get_ratio())
     gen[i].print_best_vehicle()
     # gen[i].plot()
+
+gen[0].plot()
 
 plt.scatter(gen_try, gen_vis_chargers_ratio)
 plt.xticks(gen_try)
